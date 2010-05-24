@@ -1,0 +1,15 @@
+<article>
+	<h2 class="post-title"><a href="#{urlReverser (_value)/}">${_value.title}</a></h2>
+	<div class="post-metadata">
+		<p class="post-author">
+			<small>Damien GOUYETTE | ${_value.postedAt?.format('dd MMM yyyy')}
+			#{ifAdmin}
+				 - <a href="@{Admin.form(_value.id)}">Editer</a>
+			#{/ifAdmin}
+			</small>	
+		</p>
+		 <p>#{textile2html _value?.chapeau/}</p>
+		 
+		 <p> #{textile2html _value.content/}</p>
+	</div>
+</article>

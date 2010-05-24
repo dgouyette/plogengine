@@ -1,0 +1,97 @@
+#{extends 'main.html' /}
+#{set title:post?.title/}
+
+#{set 'moreScripts'}
+
+<script type="text/javascript">  
+  				$(document).ready(function(){
+  					contentEditor = new Textile.Editor('contentEditor');
+  					$('#formSubmit').click(function(evt) {
+  						$('#content').val(contentEditor.getContent());
+  						return true;
+  					});
+  					
+  					
+  				});	
+  			</script>
+#{/set
+}
+Images : 
+#{list items:images, as:'image'}
+<p>
+<ul>
+<li>
+${image.fileName}
+<a href="@{deleteImage(image.id)}">supprimer</a>
+</li>
+#{/list}
+</p>
+
+<fieldset>
+<legend>Ajouter une nouvelle piece jointe</legend>
+<form action="@{upload}" method="POST" enctype="multipart/form-data">
+    <input type="file" id="file" name="file" />
+	<input type="text" name="postId" value="${post?.id}">
+    <input type="submit" value="Ajouter une photo" />
+</form>
+</fieldset>
+
+#{form @save(post?.id), id: 'adminForm'}
+	 #{ifErrors}
+        <p class="error">
+            Please correct these errors.
+        </p>
+    #{/ifErrors}
+    
+    
+     
+    <p>
+        #{field 'title'}
+        <label>Titre:</label>
+        <input type="text" name="${field.name}" value="${post?.title}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    
+     <p>
+        #{field 'url'}
+        <label>URL:</label>
+        <input type="text" name="${field.name}" value="${post?.url}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    
+    #{if post?.id!= null}
+    <p>
+        #{field 'postedAt'}
+        <label>postedAt:</label>
+        <input type="text" name="${field.name}" value="${post?.postedAt.format('yyyy/MM/dd')}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    #{/if}
+    
+    <p>
+        #{field 'chapeau'}
+        <label>Chapeau:</label><br/>
+        <textarea id="chapeau"  name="${field.name}" class="${field.errorClass}">${post?.chapeau}</textarea>
+        #{/field}
+    </p>
+    
+    
+    
+     <p>
+        #{field 'content'}
+        <label>Contenu:</label><br/>
+        <canvas id="contentEditor"  class="${field.errorClass}" width="700" height="400" style="cursor: text;">${post?.content?.raw()}</canvas> 
+        <textarea id="content" name="${field.name}" style="display:none;"></textarea>
+       
+        #{/field}
+    </p>
+     <p>
+        <input id="formSubmit" type="submit" value="Valider" />
+    </p>
+
+#{/form}
+
+
+
+
+

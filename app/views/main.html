@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+	<html>
+	    <head>
+	        <title>#{get 'title' /}</title>
+	        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/main.css'}"/>
+	        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/sh_vim-dark.min.css'}"/>
+
+	        #{get 'moreStyles' /}
+	        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+	        <script src="@{'/public/js/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+	        <script type="text/javascript" src="@{'/public/js/sh_main.min.js'}"></script>
+	        <script type="text/javascript" src="@{'/public/js/sh_log.min.js'}"></script>
+			<script type="text/javascript" src="@{'/public/js/sh_java.min.js'}"></script>
+			<script type="text/javascript" src="@{'/public/js/sh_xml.min.js'}"></script>
+			<script type="text/javascript" src="@{'/public/js/sh_sh.min.js'}"></script>
+			 <script type="text/javascript">
+			$(document).ready(function(){
+  				sh_highlightDocument();
+  			});
+  			</script>
+  			<script type="text/javascript" src="@{'/public/js/textile-editor.min.js'}"></script>
+  			#{get 'moreScripts' /}
+	    </head>
+	    <body>
+	    <div id="container">
+
+	    	<header id="banner" class="body">	   
+        		<h1>
+        			<a href="/">CestPasDur.com</a>
+        			<small>Tutoriaux et ressources du web</small>
+        		</h1>
+        		
+        		 <nav>
+        		 	<ul>
+        		 	<li class="active"><a href="/">Accueil</a></li>
+					<!--li><a href="#">Contact</a></li-->
+					#{gae.ifLoggedIn}
+					<li><a href="#{gae.logoutURL arg='/'/}">Déconnexion</a></li>
+					#{/gae.ifLoggedIn}
+					#{ifNotLoggedIn}
+					<li><a href="#{gae.loginURL arg='/'/}">Authentification</a></li>
+					#{/ifNotLoggedIn}
+	    			</ul>
+				</nav>
+			</nav>
+    		</header>
+    		
+    		<section id="mainContent">
+    			#{doLayout /}
+    		</section>
+
+			
+			
+	    	 
+	    	
+	    	
+	        
+	        <footer>
+            	<a href="http://www.playframework.org/" target="_blank"><img id="powered" src="/public/images/badge-dark.png"></a>
+        	</footer>
+        	</div>
+	    </body>
+	</html>

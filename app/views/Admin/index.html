@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{set 'moreStyles'}
+	 <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/jquery.dataTables.css'}">
+#{/set}
+
+#{set 'moreScripts'}
+
+
+#{/set}
+
+
+
+<table id="articles" width="100%" border="1px">
+<thead>
+<tr>
+	
+	<th>id</th>
+	<th>titre</th>
+	<th>postedAt</th>
+	<th>Action</th>	
+</tr>
+</thead>
+<tbody>
+#{list items:posts, as:'post'}
+	#{displayPostAdmin value : post/}
+#{/list}
+</tbody>
+	</table>
+#{if flash.success}
+    <p class="success">
+        ${flash.success}
+    </p>
+#{/if}
+
+
+<a href="@{Admin.form}">+Ajouter un article</a>
+

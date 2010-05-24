@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+	#{if flash.error}
+		<p class="error">
+			${flash.error}
+		</p>
+	#{/if}
+	#{if flash.success}
+		<p class="success">
+			${flash.success}
+		</p>
+	#{/if}
+
+#{list items:posts, as:'post'}
+	#{displayPostResume value : post/}
+#{/list}
+

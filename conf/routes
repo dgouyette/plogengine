@@ -1,0 +1,13 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       						Application.index
+GET		/{<[0-9]+>annee}/{<[0-9]+>mois}/{<[0-9]+>jour}/{url}			Application.show
+GET		/{<[0-9]+>annee}/{<[0-9]+>mois}/{<[0-9]+>jour}/{url}.json		Application.showJson
+GET		/show/{<[0-9]+>id}												Application.show
+GET		/feed/															Feeds.index
+GET     /public/                                						staticDir:public
+GET    /images/{name}     												Application.fileContent
+*       /{controller}/{action}                  						{controller}.{action}

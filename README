@@ -1,0 +1,15 @@
+
+
+Download "latest mylyn-wikitext-standalone-latest":http://www.eclipse.org/downloads/download.php?file=/tools/mylyn/update/weekly/mylyn-wikitext-standalone-latest.zip
+
+Copy  : 
+* org.eclipse.mylyn.wikitext.core_1.3.XXX.jar
+* org.eclipse.mylyn.wikitext.textile.core_1.3.0.XXX.jar
+to 
+PLAY_HOME/framework/lib/
+
+h2. deploy 
+run
+ 
+bc. 
+play gae:deploy --gae /Users/damiengouyette/developpement/apps/appengine-java-sdk-1.3.1/

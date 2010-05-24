@@ -1,6 +1,6 @@
+== Installation
 
-
-Download "latest mylyn-wikitext-standalone-latest":http://www.eclipse.org/downloads/download.php?file=/tools/mylyn/update/weekly/mylyn-wikitext-standalone-latest.zip
+Download http://www.eclipse.org/downloads/download.php?file=/tools/mylyn/update/weekly/mylyn-wikitext-standalone-latest.zip
 
 Copy  : 
 * org.eclipse.mylyn.wikitext.core_1.3.XXX.jar
@@ -8,7 +8,7 @@ Copy  :
 to 
 PLAY_HOME/framework/lib/
 
-h2. howto deploy 
+== howto deploy 
  
  
 play gae:deploy --gae /Users/damiengouyette/developpement/apps/appengine-java-sdk-1.3.1/

@@ -27,7 +27,7 @@ public class Feeds extends Controller {
 		feed.setLink("http://www.cestpasdur.com");
 		feed.setDescription("Tutoriaux et ressources du web");
 		
-		List<Post> posts = Post.all().fetch();
+		List<Post> posts = Post.allPublished().fetch();
 		List<SyndEntry> entries = new ArrayList<SyndEntry>();
 		
 		for( Post post : posts){

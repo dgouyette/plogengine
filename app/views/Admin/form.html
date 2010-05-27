@@ -69,6 +69,13 @@ ${image.fileName}
     #{/if}
     
     <p>
+        #{field 'published'}
+        <label>published:</label>
+        <input type="checkbox" name="${field.name}" ${field.value ? "checked='checked'": ""}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    
+    <p>
         #{field 'chapeau'}
         <label>Chapeau:</label><br/>
         <textarea id="chapeau"  name="${field.name}" class="${field.errorClass}">${post?.chapeau}</textarea>

@@ -56,6 +56,10 @@ public class Post extends Model {
 	public static Query<Post> all() {
 		return Model.all(Post.class).order("-postedAt");
 	}
+	
+	public static Query<Post> allPublished() {
+		return Model.all(Post.class).order("-postedAt").filter("published", true);
+	}
 
 	public static Post findByURL(String url) {
 		return Model.all(Post.class).filter("url", url).get();

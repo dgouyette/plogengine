@@ -54,7 +54,7 @@ public class Admin extends Controller {
 
 	@SuppressWarnings("deprecation")
 	public static void save(Long id, String title, String chapeau,String url, String content, String postedAt, boolean published) {
-		Logger.info("Save id = %s, title = %s, content = %s, postedAt = %s", id, title, content, postedAt);
+		Logger.info("Save id = %s, title = %s, content = %s, postedAt = %s, published = %s", id, title, content, postedAt, published);
 		if (id == null) {
 			Post post = new Post(title, chapeau, url, content);
 			post.insert();

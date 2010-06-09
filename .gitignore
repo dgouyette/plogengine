@@ -1,0 +1,11 @@
+*.iml
+*.ipr
+*.iws
+target
+results
+tmp
+logs
+server.pid
+.settings/
+eclipse/
+bin/

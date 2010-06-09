@@ -1,4 +1,11 @@
-<!-- Indices written at Mon, 24 May 2010 09:33:22 CEST -->
+<!-- Indices written at Wed, 9 Jun 2010 17:10:01 CEST -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="posts" ancestor="false" source="auto">
+        <property name="published" direction="asc"/>
+        <property name="postedAt" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>

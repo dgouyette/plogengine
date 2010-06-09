@@ -39,8 +39,9 @@ public class Feeds extends Controller {
 	        
 	        SyndContent description = new SyndContentImpl();
 	        description.setType("text/html");
-	        description.setValue(Textile2html.parse(post.chapeau));
+	        description.setValue(Textile2html.parse(post.chapeau)+" ...");
 	        entry.setDescription(description);
+	        entry.setUri(post.url);
 		}
 		
 		feed.setEntries(entries);

@@ -9,3 +9,4 @@ server.pid
 .settings/
 eclipse/
 bin/
+*.swp

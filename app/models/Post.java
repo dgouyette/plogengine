@@ -17,13 +17,11 @@ public class Post extends Model {
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
 
-	@Column("title")
+	
 	public String title;
 
-	@Column("url")
 	public String url;
 
-	@Column("chapeau")
 	public String chapeau;
 
 	public Boolean published=false;
@@ -31,11 +29,7 @@ public class Post extends Model {
 	@DateTime
 	public Date postedAt = new Date();
 
-	@Column("content")
 	public String content;
-
-	@Column("comments")
-	public List<Comment> comments;
 
 	public Post(String title, String chapeau, String url, String content) {
 		this.title = title;

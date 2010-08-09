@@ -10,3 +10,7 @@ server.pid
 eclipse/
 bin/
 *.swp
+.classpath
+.project
+war/
+

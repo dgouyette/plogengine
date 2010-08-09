@@ -45,9 +45,10 @@ public class HyperlinkPhraseModifier extends PatternBasedElement {
 
 			if (hyperlinkBoundaryText.equals("\"")) { //$NON-NLS-1$
 				LinkAttributes attributes = new LinkAttributes();
-				attributes.setHref(href);
+
+				//attributes.setHref(href);
 				Textile.configureAttributes(this, attributes, ATTRIBUTES_OFFSET, false);
-				builder.beginSpan(SpanType.LINK, attributes);
+				//builder.beginSpan(SpanType.LINK, attributes);
 				getMarkupLanguage().emitMarkupLine(parser, state, start(2), hyperlinkSrc, 0);
 				builder.endSpan();
 			} else {

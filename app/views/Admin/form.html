@@ -31,7 +31,7 @@ ${image.fileName}
 <legend>Ajouter une nouvelle piece jointe</legend>
 <form action="@{upload}" method="POST" enctype="multipart/form-data">
     <input type="file" id="file" name="file" />
-	<input type="text" name="postId" value="${post?.id}">
+	<input type="text" name="postId" value="${post?.id}" />
     <input type="submit" value="Ajouter une photo" />
 </form>
 </fieldset>
@@ -71,7 +71,7 @@ ${image.fileName}
     <p>
         #{field 'published'}
         <label>published:</label>
-        <input type="checkbox" name="${field.name}" ${field.value ? "checked='checked'": ""}" class="${field.errorClass}" />
+        <input type="checkbox" name="${field.name}" ${post?.published ? 'checked="checked"'.raw(): ""} class="${field.errorClass}" />
         #{/field}
     </p>
     

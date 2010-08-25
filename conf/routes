@@ -2,6 +2,9 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+### Administration
+GET     /admin/?                                                        Admin.index
+
 # Home page
 GET     /                                       						Application.index
 GET		/{<[0-9]+>annee}/{<[0-9]+>mois}/{<[0-9]+>jour}/{url}			Application.show

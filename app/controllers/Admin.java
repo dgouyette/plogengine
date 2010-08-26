@@ -5,6 +5,8 @@ import java.util.List;
 
 import models.Image;
 import models.Post;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
 import play.Logger;
 import play.data.Upload;
 import play.mvc.Controller;
@@ -23,11 +25,12 @@ public class Admin extends Controller {
         render(posts);
     }
 
-    public static void upload(Upload file, long postId) {
-        Image image = new Image(new Blob(file.asBytes()), postId, file.getFileName());
-        image.insert();
-        index();
+    public static void add() {
+        render("@form");
+    }
 
+    public static void edit(Long id) {
+        form(id);
     }
 
     public static void form(Long id) {
@@ -39,11 +42,6 @@ public class Admin extends Controller {
         render();
     }
 
-    public static void deleteImage(long id) {
-        Image.findById(id).delete();
-        index();
-    }
-
     public static void delete(long id) {
         Post post = Post.findById(id);
         post.delete();
@@ -51,8 +49,20 @@ public class Admin extends Controller {
         index();
     }
 
+    public static void upload(Upload file, long postId) {
+        Image image = new Image(new Blob(file.asBytes()), postId, file.getFileName());
+        image.insert();
+        index();
+
+    }
+
+    public static void deleteImage(long id) {
+        Image.findById(id).delete();
+        index();
+    }
+
     @SuppressWarnings("deprecation")
-    public static void save(Long id, String title, String chapeau, String url, String content, String postedAt, boolean published) {
+    public static void save(Long id, @NotNull @NotEmpty String title, String chapeau, String url, String content, String postedAt, boolean published) {
         Logger.info("Save id = %s, title = %s, content = %s, postedAt = %s, published = %s", id, title, content, postedAt, published);
         if (id == null) {
             Post post = new Post(title, chapeau, url, content, published);

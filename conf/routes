@@ -2,15 +2,23 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Home page
+GET     /                                                               Application.index
+
 ### Administration
 GET     /admin/?                                                        Admin.index
+GET     /admin/add                                                      Admin.add
+GET     /admin/edit/{id}                                                Admin.edit
+GET     /admin/form/{id}                                                Admin.form
+GET     /admin/delete/{id}                                              Admin.delete
 
-# Home page
-GET     /                                       						Application.index
-GET		/{<[0-9]+>annee}/{<[0-9]+>mois}/{<[0-9]+>jour}/{url}			Application.show
-GET		/{url}															Application.show
-GET		/{<[0-9]+>annee}/{<[0-9]+>mois}/{<[0-9]+>jour}/{url}.json		Application.showJson
-GET		/show/{<[0-9]+>id}												Application.show
+### Affichage d'un Post
+# /!\ les urls json doivent figurer avant leurs urls normales pour etre prises en compte 
+#     (Cf. http://www.playframework.org/documentation/1.0.3/routes#priority)
+GET     /{<[1-9][0-9][0-9][0-9]>annee}/{<0[1-9]|1[0-2]>mois}/{<0[1-9]|[1-2][0-9]|3[0-1]>jour}/{url}.json    Application.showJson
+GET     /{<[1-9][0-9][0-9][0-9]>annee}/{<0[1-9]|1[0-2]>mois}/{<0[1-9]|[1-2][0-9]|3[0-1]>jour}/{url}         Application.showByDateAndUrl
+GET     /post/{<[1-9][0-9]+>id}                                         Application.showById
+
 GET		/feed/															Feeds.index
 GET     /public/                                						staticDir:public
 GET    /images/{name}     												Application.fileContent

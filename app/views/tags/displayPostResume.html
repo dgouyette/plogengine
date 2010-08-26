@@ -1,10 +1,10 @@
 <article>
-	<h2 class="post-title"><a href="#{urlReverser (_value)/}">${_value.title}</a></h2>
+	<h2 class="post-title">#{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'), _value.postedAt.format('MM'), _value.postedAt.format('dd'), _value.url)}${_value.title}#{/a}</h2>
 	<div class="post-metadata">
 		<p class="post-author">
 			<small>Damien GOUYETTE | ${_value.postedAt?.format('dd MMM yyyy')}
 			#{ifAdmin}
-				 - <a href="@{Admin.form(_value.id)}">Editer</a>
+				 - #{a @Admin.form(_value.id)}Editer#{/a}
 			#{/ifAdmin}
 			</small>	
 		</p>

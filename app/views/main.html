@@ -1,82 +1,82 @@
-<!DOCTYPE html>
-	<html>
-	    <head>
-	        <title>#{get 'title' /}</title>
-	        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/main.css'}"/>
-	        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/sh_ide-eclipse.min.css'}"/>
-			<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/main.css'}"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/css/sh_ide-eclipse.min.css'}"/>
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb" />
 
-	        #{get 'moreStyles' /}
-	        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-	        <script src="@{'/public/js/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
-	        <script type="text/javascript" src="@{'/public/js/sh_main.min.js'}"></script>
-	        <script type="text/javascript" src="@{'/public/js/sh_log.min.js'}"></script>
-			<script type="text/javascript" src="@{'/public/js/sh_javascript.min.js'}"></script>
-			<script type="text/javascript" src="@{'/public/js/sh_java.min.js'}"></script>
-			<script type="text/javascript" src="@{'/public/js/sh_xml.min.js'}"></script>
-			<script type="text/javascript" src="@{'/public/js/sh_sh.min.js'}"></script>
-			 <script type="text/javascript">
-			$(document).ready(function(){
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/js/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="@{'/public/js/sh_main.min.js'}"></script>
+        <script type="text/javascript" src="@{'/public/js/sh_log.min.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/sh_javascript.min.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/sh_java.min.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/sh_xml.min.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/sh_sh.min.js'}"></script>
+		 <script type="text/javascript">
+		$(document).ready(function(){
   				sh_highlightDocument();
   			});
   			</script>
   			<script type="text/javascript" src="@{'/public/js/textile-editor.min.js'}"></script>
   			#{get 'moreScripts' /}
-	    </head>
-	    <body>
-	    <div id="container">
+    </head>
+    <body>
+    <div id="container">
 
-	    	<header id="banner" class="body">	   
-        		<h1>
-        			<a href="/">Damien GOUYETTE's blog</a>
-        		</h1>
-        		
-        		 <nav>
-        		 	<ul>
-        		 	<li class="active"><a href="/">Accueil</a></li>
-					<!--li><a href="#">Contact</a></li-->
-					#{gae.ifLoggedIn}
-					<li><a href="#{gae.logoutURL arg='/'/}">Déconnexion</a></li>
-					#{/gae.ifLoggedIn}
-					#{ifNotLoggedIn}
-					<li><a href="#{gae.loginURL arg='/'/}">Authentification</a></li>
-					#{/ifNotLoggedIn}
-	    			</ul>
-				</nav>
-			</nav>
-    		</header>
+    	<header id="banner" class="body">	   
+    		<h1>
+    			<a href="/">Damien GOUYETTE's blog</a>
+    		</h1>
     		
-    		<section id="mainContent">
-    			#{doLayout /}
-    		</section>
+    		 <nav>
+    		 	<ul>
+    		 	<li class="active"><a href="/">Accueil</a></li>
+				<!--li><a href="#">Contact</a></li-->
+				#{gae.ifLoggedIn}
+				<li><a href="#{gae.logoutURL arg='/'/}">Déconnexion</a></li>
+				#{/gae.ifLoggedIn}
+				#{ifNotLoggedIn}
+				<li><a href="#{gae.loginURL arg='/'/}">Authentification</a></li>
+				#{/ifNotLoggedIn}
+    			</ul>
+			</nav>
+		</nav>
+		</header>
+		
+		<section id="mainContent">
+			#{doLayout /}
+		</section>
 
-			
-			
-	    	 
-	    	
-	    	
-	        
-	        <footer>
-            	<a href="http://www.playframework.org/" target="_blank"><img id="powered" src="/public/images/badge-dark.png"></a>
-        	</footer>
-        	</div>
-        	#{marqueurStat/}
+		
+		
+    	 
+    	
+    	
+        
+        <footer>
+        	<a href="http://www.playframework.org/" target="_blank"><img id="powered" src="/public/images/badge-dark.png"></a>
+    	</footer>
+    	</div>
+    	#{marqueurStat/}
 
-        	<script type="text/javascript">
-			//<![CDATA[
-			(function() {
-				var links = document.getElementsByTagName('a');
-				var query = '?';
-				for(var i = 0; i < links.length; i++) {
-				if(links[i].href.indexOf('#disqus_thread') >= 0) {
-					query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-				}
-				}
-				document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/damiengouyettesblog/get_num_replies.js' + query + '"></' + 'script>');
-			})();
-			//]]>
-			</script>
-			
-	    </body>
-	</html>
+    	<script type="text/javascript">
+		//<![CDATA[
+		(function() {
+			var links = document.getElementsByTagName('a');
+			var query = '?';
+			for(var i = 0; i < links.length; i++) {
+			if(links[i].href.indexOf('#disqus_thread') >= 0) {
+				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+			}
+			}
+			document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/damiengouyettesblog/get_num_replies.js' + query + '"></' + 'script>');
+		})();
+		//]]>
+		</script>
+		
+    </body>
+</html>

@@ -3,25 +3,16 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        #{stylesheet id:'main', media:'screen', src:'main.css', title:'Main stylesheet' /}
-        #{stylesheet id:'shjs-ide-eclipse-min', media:'screen', src:'shjs/sh_ide-eclipse.min.css', title:'IDE Eclipse stylesheet' /}
+        #{stylesheet id:'main', media:'screen', src:'main.css' /}
+        #{shjs.style name:'ide-eclipse' /}
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb" />
 
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <!--[if IE]>#{script id:'html5-ie', src:'ie/html5-ie.js'/}<![endif]--> 
         #{script id:'jquery-1.4.2', src:'jquery-1.4.2.min.js' /}
-        #{script id:'shjs-main-min', src:'shjs/sh_main.min.js' /}
-        #{script id:'shjs-log-min', src:'shjs/sh_log.min.js' /}
-        #{script id:'shjs-javascript-min', src:'shjs/sh_javascript.min.js' /}
-        #{script id:'shjs-java-min', src:'shjs/sh_java.min.js' /}
-        #{script id:'shjs-xml-min', src:'shjs/sh_xml.min.js' /}
-        #{script id:'shjs-sh-min', src:'shjs/sh_sh.min.js' /}
-        <script type="text/javascript">
-        $(document).ready(function(){
-                  sh_highlightDocument();
-              });
-              </script>
+        
+        #{shjs.javascript /}
         #{script id:'textile-editor-min', src:'textile/textile-editor.min.js' /}
         #{get 'moreScripts' /}
     </head>
@@ -30,21 +21,21 @@
 
         <header id="banner" class="body">       
             <h1>
-                <a href="/">Damien GOUYETTE's blog</a>
+                #{a @Application.index()}Damien GOUYETTE's blog#{/a}
             </h1>
             
              <nav>
                  <ul>
-                 <li class="active"><a href="/">Accueil</a></li>
+                 <li class="active">#{a @Application.index()}Accueil#{/a}</li>
                 <!--li><a href="#">Contact</a></li-->
                 #{gae.ifLoggedIn}
                 #{gae.ifAdmin}
                 <li>#{a @Admin.index()}Administration#{/a}</li>
                 #{/gae.ifAdmin}
-                <li><a href="#{gae.logoutURL arg='/'/}">Déconnexion</a> </li>
+                <li><a href="#{gae.logoutURL arg='/' /}">Déconnexion</a> </li>
                 #{/gae.ifLoggedIn}
                 #{ifNotLoggedIn}
-                <li><a href="#{gae.loginURL arg='/'/}">Authentification</a></li>
+                <li><a href="#{gae.loginURL arg='/' /}">Authentification</a></li>
                 #{/ifNotLoggedIn}
                 </ul>
             </nav>

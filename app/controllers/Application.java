@@ -13,7 +13,7 @@ import play.mvc.Controller;
 public class Application extends Controller {
 
     public static void index() {
-        List<Post> posts = Post.allPublished().fetch();
+        List<Post> posts = Post.allPublished().fetch(10);
         render(posts);
     }
 

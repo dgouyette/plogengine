@@ -14,3 +14,4 @@ bin/
 .project
 war/
 true
+precompiled/

@@ -29,11 +29,23 @@
 #{/list}
 </tbody>
 	</table>
+	
+	<p>Nombre d'image en base : ${nbImage}</p>
 #{if flash.success}
     <p class="success">
         ${flash.success}
     </p>
 #{/if}
+
+
+
+<fieldset>
+<legend>Ajouter une nouvelle piece jointe</legend>
+<form action="@{Backup.restore()}" method="POST" enctype="multipart/form-data" accept="application/json">
+    <input type="file" id="file" name="file" />
+    <input type="submit" value="Restaurer" />
+</form>
+</fieldset>
 
 
 #{a @Admin.add()}+Ajouter un article#{/a}

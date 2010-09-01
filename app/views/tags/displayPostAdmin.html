@@ -3,6 +3,6 @@
 	<td>${_value.title}</td>
 	<td>${_value.published}</td>
 	<td>${_value.postedAt?.format('dd MMM yyyy')}</td>
-	<td> #{a @Admin.edit(_value.id)}Editer#{/a} | #{a @Admin.delete(_value.id)}Supprimer#{/a} |
+	<td> #{a @Admin.edit(_value.id)}Editer#{/a} | #{a @Admin.delete(_value.id)}Supprimer#{/a} | #{a @Backup.backup(_value.id)} Backup#{/a} |
 	#{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'), _value.postedAt.format('MM'), _value.postedAt.format('dd'), _value.url)}Afficher#{/a}</td>
 </tr>	

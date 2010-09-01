@@ -32,6 +32,11 @@ public class Image extends Model {
 		return Model.all(Image.class).filter("id", id).get();
 	}
 	
+	public static List<Image> findByPostId(long id){
+		return Model.all(Image.class).filter("postId", id).fetch();
+	}
+	
+	
 	
 	public static Image findByName(String fileName){
 		return Model.all(Image.class).filter("fileName", fileName).get();

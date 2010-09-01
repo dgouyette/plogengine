@@ -5,12 +5,15 @@
 # Home page
 GET     /                                                               Application.index
 
+
+
 ### Administration
 GET     /admin/?                                                        Admin.index
 GET     /admin/add                                                      Admin.add
 GET     /admin/edit/{id}                                                Admin.edit
 GET     /admin/form/{id}                                                Admin.form
 GET     /admin/delete/{id}                                              Admin.delete
+  
 
 ### Affichage d'un Post
 # /!\ les urls json doivent figurer avant leurs urls normales pour etre prises en compte 
@@ -21,4 +24,6 @@ GET     /post/{<[1-9][0-9]+>id}                                         Applicat
 GET		/feed/															Feeds.index
 GET     /public/                                						staticDir:public
 GET     /images/{name}     												Application.fileContent
+GET     /backup/{id}        											Backup.backup
+POST    /backup/restore/{format}		     									Backup.restore
 *       /{controller}/{action}                  						{controller}.{action}

@@ -27,6 +27,10 @@ public class Post extends Model {
     public Date    postedAt  = new Date();
 
     public String  content;
+    
+    public Post(){
+    	
+    }
 
     public Post(String title, String chapeau, String url, String content, Boolean published) {
         this.title = title;

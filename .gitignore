@@ -13,4 +13,4 @@ bin/
 .classpath
 .project
 war/
-
+true

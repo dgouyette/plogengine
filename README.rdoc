@@ -4,5 +4,3 @@
 == howto deploy 
   
 play gae:deploy --gae /Users/damiengouyette/developpement/apps/appengine-java-sdk-1.3.1/
-
- "play-1.0-r1058":http://download.playframework.org/1.0-nightly/play-1.0-r1058.zip is required (cypher problems)

@@ -22,7 +22,8 @@ public class Admin extends Controller {
 
     public static void index() {
         List<Post> posts = Post.all().fetch();
-        render(posts);
+        int nbImage = Image.all(Image.class).count();
+        render(posts, nbImage);
     }
 
     public static void add() {
@@ -44,6 +45,12 @@ public class Admin extends Controller {
 
     public static void delete(long id) {
         Post post = Post.findById(id);
+
+        List<Image> imagesToDelete= Image.allByPostId(post.id);
+        for(Image imageToDelete : imagesToDelete){
+        	imageToDelete.delete();
+        }
+        
         post.delete();
         flash.success("L'article " + id + " a bien ete supprime");
         index();

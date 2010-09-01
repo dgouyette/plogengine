@@ -18,7 +18,6 @@ public class Application extends Controller {
     }
 
     public static void showById(long id) {
-        System.out.println("findById");
         Post post = Post.findById(id);
         render("@show", post);
     }

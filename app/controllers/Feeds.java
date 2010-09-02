@@ -3,10 +3,12 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.mylyn.wikitext.textile.core.TextileLanguage;
-
 import models.Post;
+import play.Logger;
+import play.Play;
+import play.cache.Cache;
 import play.mvc.Controller;
+import play.ns.com.jhlabs.image.PlasmaFilter;
 import utils.Textile2html;
 
 import com.sun.syndication.feed.synd.SyndContent;
@@ -19,9 +21,15 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedOutput;
 
 public class Feeds extends Controller {
+	
+	public final static String FEEDS= "FEEDS";
+	
 	public static void index() throws FeedException {
-
-		SyndFeed feed = new SyndFeedImpl();
+		
+		SyndFeedImpl feed= Cache.get(FEEDS, SyndFeedImpl.class);
+		
+		if(feed ==null){
+		 feed = new SyndFeedImpl();
 		feed.setFeedType("rss_2.0");
 		feed.setTitle("CestPasDur.com, flux RSS");
 		feed.setLink("http://www.cestpasdur.com");
@@ -42,9 +50,17 @@ public class Feeds extends Controller {
 	        description.setValue(Textile2html.parse(post.chapeau)+" ...");
 	        entry.setDescription(description);
 	        entry.setUri(post.url);
+	        
+	        //TODO déplacer la definition de la duree dans le fichier de configuration ave  Play.configuration.
+	        Cache.set(FEEDS, feed, "24h");
+	        
 		}
 		
 		feed.setEntries(entries);
+		}
+		else{
+			Logger.info("Utilisation de la version cachee des feeds", "");
+		}
 		
 		SyndFeedOutput output = new SyndFeedOutput();
 		renderXml(output.outputString(feed, true));

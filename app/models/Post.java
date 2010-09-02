@@ -28,6 +28,7 @@ public class Post extends Model {
 
     public String  content;
     
+    
     public Post(){
     	
     }

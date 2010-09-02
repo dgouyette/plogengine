@@ -2,6 +2,7 @@ package utils;
 
 import java.util.List;
 
+import org.eclipse.mylyn.internal.wikitext.confluence.core.phrase.HyperlinkPhraseModifier;
 import org.eclipse.mylyn.internal.wikitext.textile.core.block.FootnoteBlock;
 import org.eclipse.mylyn.internal.wikitext.textile.core.block.HeadingBlock;
 import org.eclipse.mylyn.internal.wikitext.textile.core.block.ListBlock;
@@ -56,7 +57,7 @@ public class TextileLanguageCustom extends TextileLanguage {
 		phraseModifierSyntax.add(new SimpleTextilePhraseModifier("%", SpanType.SPAN, Mode.NESTING)); //$NON-NLS-1$
 		phraseModifierSyntax.add(new SimpleTextilePhraseModifier("-", SpanType.DELETED, Mode.NESTING)); //$NON-NLS-1$
 		phraseModifierSyntax.add(new ImagePhraseTextileModifierCustom());
-		phraseModifierSyntax.add(new HyperlinkPhraseModifier()); // hyperlinks are actually a phrase modifier see bug 283093
+		phraseModifierSyntax.add(new HyperlinkPhraseModifier());  // hyperlinks are actually a phrase modifier see bug 283093
 		phraseModifierSyntax.endGroup(")(?=\\W|$)", 0); //$NON-NLS-1$
 
 	}

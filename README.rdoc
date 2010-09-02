@@ -4,3 +4,17 @@
 == howto deploy 
   
 play gae:deploy --gae /Users/damiengouyette/developpement/apps/appengine-java-sdk-1.3.1/
+
+
+== Problèmes avec les librairies wiki embarquées.
+
+Play! embarque avec lui, même si celles ci ne sont pas utilisées (à première vue), les librairies suivantes : 
+* WikiText
+* wikitext.core_1.1.1.jar
+
+Ces versions sont obsolètes, pour réaliser la conversion textile en html, il va falloirs supprimer les deux librairies présentes dans le répertoire $PLAY_HOME/framework/lib/
+
+Les versions plus récentes sont embarquées avec l'application : 
+* org.eclipse.mylyn.wikitext.confluence.core_1.4.0.I20100829-0800-e3x.jar : permet d'avoir la syntaxe textile + syntaxe confluence
+* org.eclipse.mylyn.wikitext.core_1.4.0.I20100829-0800-e3x.jar  : le core
+* org.eclipse.mylyn.wikitext.textile.core_1.4.0.I20100829-0800-e3x.jar : la syntaxe textile pure et simple.

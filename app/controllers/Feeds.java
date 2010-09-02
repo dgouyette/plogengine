@@ -7,6 +7,7 @@ import models.Post;
 import play.Logger;
 import play.Play;
 import play.cache.Cache;
+import play.modules.gae.GAE;
 import play.mvc.Controller;
 import play.ns.com.jhlabs.image.PlasmaFilter;
 import utils.Textile2html;
@@ -25,6 +26,7 @@ public class Feeds extends Controller {
 	public final static String FEEDS= "FEEDS";
 	
 	public static void index() throws FeedException {
+		
 		
 		SyndFeedImpl feed= Cache.get(FEEDS, SyndFeedImpl.class);
 		

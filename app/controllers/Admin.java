@@ -8,6 +8,7 @@ import models.Post;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import play.Logger;
+import play.cache.Cache;
 import play.data.Upload;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -24,6 +25,12 @@ public class Admin extends Controller {
         List<Post> posts = Post.all().fetch();
         int nbImage = Image.all(Image.class).count();
         render(posts, nbImage);
+    }
+    
+    public static void cachereset(){
+    	flash.success("Le cache a été effacé");
+    	Cache.clear();
+    	index();
     }
 
     public static void add() {

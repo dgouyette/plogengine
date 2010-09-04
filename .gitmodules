@@ -1,0 +1,3 @@
+[submodule "plui"]
+	path = plui
+	url = git@github.com:fdrouet/plui.git

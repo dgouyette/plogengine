@@ -11,6 +11,18 @@
 #{/set}
 
 
+#{if flash.success}
+    	<div class="success">
+    		${flash.success}
+    	</div>
+    #{/if}
+    #{if flash.error || error}
+    	<div class="error">
+    		${error ?: flash.error}
+    	</div>
+    #{/if}
+
+
 
 <table id="articles" width="100%" border="1px">
 <thead>

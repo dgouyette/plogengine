@@ -18,3 +18,10 @@ Les versions plus récentes sont embarquées avec l'application :
 * org.eclipse.mylyn.wikitext.confluence.core_1.4.0.I20100829-0800-e3x.jar : permet d'avoir la syntaxe textile + syntaxe confluence
 * org.eclipse.mylyn.wikitext.core_1.4.0.I20100829-0800-e3x.jar  : le core
 * org.eclipse.mylyn.wikitext.textile.core_1.4.0.I20100829-0800-e3x.jar : la syntaxe textile pure et simple.
+
+== Récupérer les sous modules git
+
+Afin de récupérer les sous modules git, lancez les commandes suivantes : 
+
+git submodule init
+git submodule update

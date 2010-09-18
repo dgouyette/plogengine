@@ -1,6 +1,5 @@
 == Installation
 
-
 == prerequisite
 
 * Play Framework 1.0.x (tested with 1.0.3.2)

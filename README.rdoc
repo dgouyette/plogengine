@@ -31,5 +31,5 @@ Les versions plus récentes sont embarquées avec l'application :
 
 Afin de récupérer les sous modules git, lancez les commandes suivantes : 
 
-git submodule init
-git submodule update
+* git submodule init
+* git submodule update

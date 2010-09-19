@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.Image;
 import models.Post;
+import models.Tag;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import play.Logger;
@@ -24,11 +25,12 @@ public class Admin extends Controller {
     public static void index() {
         List<Post> posts = Post.all().fetch();
         int nbImage = Image.all(Image.class).count();
-        render(posts, nbImage);
+        List<Tag> tags = Tag.findAll();
+        render(posts, nbImage, tags);
     }
     
     public static void cachereset(){
-    	flash.success("Le cache a été effacé");
+    	flash.success("Le cache a ete efface");
     	Cache.clear();
     	index();
     }
@@ -45,7 +47,9 @@ public class Admin extends Controller {
         if (id != null) {
             List<Image> images = Image.allByPostId(id);
             Post post = Post.findById(id);
-            render(post, images);
+           List<Tag> tags =  Tag.findTagsByPostId(id);
+           Tag.findAll();
+            render(post, images, tags);
         }
         render();
     }
@@ -73,6 +77,21 @@ public class Admin extends Controller {
     public static void deleteImage(long id) {
         Image.findById(id).delete();
         index();
+    }
+    
+    public static void saveTag(@NotNull @NotEmpty String tagName, @NotNull @NotEmpty long postId){
+    	Logger.info("Ajout du tag %s a l'article id %s", tagName, postId);
+    	Tag tag = Tag.findOrCreateByName(tagName);
+    	Logger.info(" avant tag.id %s, tag.name %s, tag.postIds %s", tag.id, tag.name, tag.postIds);
+    	tag.postIds.add(postId);
+    	if(tag.id==null){
+    		tag.insert();
+    	}
+    	else{
+    		tag.update();
+    	}
+    	Logger.info("apres  tag.id %s, tag.name %s, tag.postIds %s", tag.id, tag.name, tag.postIds);
+    	form(postId);
     }
 
     @SuppressWarnings("deprecation")

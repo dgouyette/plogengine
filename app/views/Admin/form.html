@@ -16,6 +16,26 @@
   			</script>
 #{/set
 }
+
+<hr/>
+Tags ${tags}: 
+#{form @saveTag(), id: 'adminForm'}
+	 	<p>
+	 	#{field 'tagName'}
+        <label>Tag:</label>
+        <input type="text" name="${field.name}" class="${field.errorClass}" />
+        #{/field}
+        </p>
+        <p>
+       #{field 'postId'}
+        <input type="hidden" name="${field.name}" value="${post?.id}"/>
+        #{/field}  
+        </p>
+        <input id="formSubmit" type="submit" value="add" />
+#{/form}
+
+<hr/>
+
 Images : 
 #{list items:images, as:'image'}
 <p>
@@ -43,7 +63,10 @@ ${image.fileName}
         </p>
     #{/ifErrors}
     
-    
+    <p>
+    	<label>id : </label>
+    	${post?.id}
+    </p>
      
     <p>
         #{field 'title'}

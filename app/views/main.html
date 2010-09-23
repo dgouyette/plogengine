@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
     <head>
         <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        #{stylesheet id:'main', media:'screen', src:'main.css' /}
-        #{shjs.style name:'ide-eclipse' /}
+		
+		#{stylesheet id:'main', media:'screen', src:'main.css' /}
+
+	  	#{shjs.style name:'ide-eclipse' /}
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb" />
 
         #{get 'moreStyles' /}
@@ -13,7 +15,18 @@
         #{script id:'jquery-1.4.2', src:'jquery-1.4.2.min.js' /}
         
         #{shjs.javascript /}
-        #{script id:'textile-editor-min', src:'textile/textile-editor.min.js' /}
+
+
+		<script type="text/javascript"  src="/public/markitup/jquery.markitup.js"></script>
+	
+		<script type="text/javascript"  src="/public/markitup/sets/textile/set.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="/public/markitup/sets/textile/style.css" />
+		
+		<link rel="stylesheet" type="text/css" href="/public/markitup/skins/markitup/style.css" />
+		
+		
+	
         #{get 'moreScripts' /}
     </head>
     <body>

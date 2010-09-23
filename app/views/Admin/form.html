@@ -1,21 +1,17 @@
 #{extends 'main.html' /}
 #{set title:post?.title/}
-
 #{set 'moreScripts'}
 
 <script type="text/javascript">  
-  				$(document).ready(function(){
-  					contentEditor = new Textile.Editor('contentEditor');
-  					$('#formSubmit').click(function(evt) {
-  						$('#content').val(contentEditor.getContent());
-  						return true;
-  					});
-  					
-  					
-  				});	
-  			</script>
-#{/set
-}
+  			$(document).ready(function()	{
+			    $('textarea').markItUp(mySettings);
+			});
+			
+</script>
+#{/set}
+
+
+
 
 <hr/>
 Tags ${tags}: 
@@ -101,7 +97,7 @@ ${image.fileName}
     <p>
         #{field 'chapeau'}
         <label>Chapeau:</label><br/>
-        <textarea id="chapeau"  name="${field.name}" class="${field.errorClass}">${post?.chapeau}</textarea>
+        <textarea id="chapeau"  name="${field.name}" >${post?.chapeau}</textarea>
         #{/field}
     </p>
     
@@ -110,8 +106,7 @@ ${image.fileName}
      <p>
         #{field 'content'}
         <label>Contenu:</label><br/>
-        <canvas id="contentEditor"  class="${field.errorClass}" width="700" height="400" style="cursor: text;">${post?.content?.raw()}</canvas> 
-        <textarea id="content" name="${field.name}" style="display:none;"></textarea>
+        <textarea id="content" cols="80" rows="20"  name="${field.name}">${post?.content?.raw()}</textarea>
        
         #{/field}
     </p>

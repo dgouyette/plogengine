@@ -9,7 +9,6 @@ import play.Play;
 import play.cache.Cache;
 import play.modules.gae.GAE;
 import play.mvc.Controller;
-import play.ns.com.jhlabs.image.PlasmaFilter;
 import utils.Textile2html;
 
 import com.sun.syndication.feed.synd.SyndContent;

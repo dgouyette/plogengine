@@ -1,16 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{set 'moreStyles'}
-#{stylesheet id:'jquery-datatables', media:'screen', src:'jquery.dataTables.css', title:'JQuery DataTable stylesheet' /}
-#{/set}
-
-#{set 'moreScripts'}
-
-
-#{/set}
-
-
 #{if flash.success}
     	<div class="success">
     		${flash.success}

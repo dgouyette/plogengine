@@ -5,17 +5,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		
 		#{stylesheet id:'main', media:'screen', src:'main.css' /}
+		
+		#{stylesheet id:'jquery-ui', media:'screen', src:'jquery-ui/1.8.1/base/jquery.ui.all.css' /}
 
+	  	
+        
+	  	
 	  	#{shjs.style name:'ide-eclipse' /}
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb" />
 
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <!--[if IE]>#{script id:'html5-ie', src:'ie/html5-ie.js'/}<![endif]--> 
-        #{script id:'jquery-1.4.2', src:'jquery-1.4.2.min.js' /}
-        
-        #{shjs.javascript /}
+        #{script id:'jquery', src:'jquery/1.4.2/jquery.min.js' /}
+        #{script id:'jquery-ui', src:'jquery-ui/1.8.1/jquery-ui.custom.min.js' /}
 
+		
+        
 
 		<script type="text/javascript"  src="/public/markitup/jquery.markitup.js"></script>
 	

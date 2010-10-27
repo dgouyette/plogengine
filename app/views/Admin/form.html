@@ -5,7 +5,8 @@
 <script type="text/javascript">  
   			$(document).ready(function()	{
 			    $('textarea').markItUp(mySettings);
-			});
+			    $('.datepicker').datepicker();
+				});
 			
 </script>
 #{/set}
@@ -82,7 +83,7 @@ ${image.fileName}
     <p>
         #{field 'postedAt'}
         <label>postedAt:</label>
-        <input type="text" name="${field.name}" value="${post?.postedAt.format('yyyy/MM/dd')}" class="${field.errorClass}" />
+        <input type="text" name="${field.name}" value="${post?.postedAt.format('yyyy/MM/dd')}" class="datepicker" />
         #{/field}
     </p>
     #{/if}

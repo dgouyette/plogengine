@@ -6,7 +6,7 @@
 		
 		#{stylesheet id:'main', media:'screen', src:'main.css' /}
 		
-		#{stylesheet id:'jquery-ui', media:'screen', src:'jquery-ui/1.8.1/base/jquery.ui.all.css' /}
+		#{stylesheet id:'jquery-ui', media:'screen', src:'jquery-ui/1.8.11/base/jquery.ui.all.css' /}
 
 	  	
         
@@ -17,8 +17,16 @@
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <!--[if IE]>#{script id:'html5-ie', src:'ie/html5-ie.js'/}<![endif]--> 
-        #{script id:'jquery', src:'jquery/1.4.2/jquery.min.js' /}
-        #{script id:'jquery-ui', src:'jquery-ui/1.8.1/jquery-ui.custom.min.js' /}
+        #{script id:'jquery', src:'jquery/1.5.1/jquery.min.js' /}
+         #{script id:'shjs_main', src:'shjs/0.6/sh_main.min.js' /}
+       
+        #{script id:'shjs_java', src:'shjs/0.6/sh_java.min.js' /}
+        #{script id:'shjs_python', src:'shjs/0.6/sh_python.min.js' /}
+        #{script id:'shjs_log', src:'shjs/0.6/sh_log.min.js' /}
+        #{script id:'shjs_sh', src:'shjs/0.6/sh_sh.min.js' /}
+        
+        
+        #{script id:'jquery-ui', src:'jquery-ui/1.8.11/jquery-ui.custom.min.js' /}
 
 		
         
@@ -35,7 +43,7 @@
 	
         #{get 'moreScripts' /}
     </head>
-    <body>
+    <body onload="sh_highlightDocument();">
     <div id="container">
 
         <header id="banner" class="body">       

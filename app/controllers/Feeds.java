@@ -7,7 +7,6 @@ import models.Post;
 import play.Logger;
 import play.Play;
 import play.cache.Cache;
-import play.modules.gae.GAE;
 import play.mvc.Controller;
 import utils.Textile2html;
 
@@ -35,7 +34,7 @@ public class Feeds extends Controller {
 			feed.setLink("http://www.cestpasdur.com");
 			feed.setDescription("Tutoriaux et ressources du web");
 
-			List<Post> posts = Post.allPublished().fetch();
+			List<Post> posts = Post.find("published", true).fetch();
 			List<SyndEntry> entries = new ArrayList<SyndEntry>();
 
 			for (Post post : posts) {

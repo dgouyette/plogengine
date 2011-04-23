@@ -48,19 +48,12 @@
                 #{a @Application.index()}Damien GOUYETTE's blog#{/a}
             </h1>
             
-             <nav>
+              <nav>
                  <ul>
                  <li class="active">#{a @Application.index()}Accueil#{/a}</li>
                 <!--li><a href="#">Contact</a></li-->
-                #{gae.ifLoggedIn}
-                #{gae.ifAdmin}
+               
                 <li>#{a @Admin.index()}Administration#{/a}</li>
-                #{/gae.ifAdmin}
-                <li><a href="#{gae.logoutURL arg='/' /}">Déconnexion</a> </li>
-                #{/gae.ifLoggedIn}
-                #{ifNotLoggedIn}
-                <li><a href="#{gae.loginURL arg='/' /}">Authentification</a></li>
-                #{/ifNotLoggedIn}
                 </ul>
             </nav>
         </nav>

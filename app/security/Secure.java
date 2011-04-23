@@ -9,7 +9,6 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.utils.Java;
 
-import com.google.appengine.api.users.UserServiceFactory;
 
 public class Secure extends Controller {
 
@@ -26,14 +25,14 @@ public class Secure extends Controller {
 	}
 
 	private static void checkIsAdmin(CheckIsAdmin check) throws Throwable {
-		if(!UserServiceFactory.getUserService().isUserLoggedIn()){
-			Security.invoke("onCheckFailed");
-		}
-		
-		if(!UserServiceFactory.getUserService().isUserAdmin()) {
-			 Logger.warn("l'utilisateur courant n'est pas admin = %s", UserServiceFactory.getUserService().getCurrentUser().getEmail());	
-             Security.invoke("onCheckFailed");
-         }
+//		if(!UserServiceFactory.getUserService().isUserLoggedIn()){
+//			Security.invoke("onCheckFailed");
+//		}
+//		
+//		if(!UserServiceFactory.getUserService().isUserAdmin()) {
+//			 Logger.warn("l'utilisateur courant n'est pas admin = %s", UserServiceFactory.getUserService().getCurrentUser().getEmail());	
+//             Security.invoke("onCheckFailed");
+//         }
 	}
 
 	public static class Security extends Controller {
@@ -44,7 +43,7 @@ public class Secure extends Controller {
 		 * @param profile
 		 */
 		static void onCheckFailed() {
-			redirect(UserServiceFactory.getUserService().createLoginURL("/"));
+//			redirect(UserServiceFactory.getUserService().createLoginURL("/"));
 		}
 		
 		 private static Object invoke(String m, Object... args) throws Throwable {

@@ -36,7 +36,7 @@
 <p>
 <b>Tags</b> : ${tags}
 </p>	
-	<p>Nombre d'image en base : ${nbImage}</p>
+	
 #{if flash.success}
     <p class="success">
         ${flash.success}
@@ -52,6 +52,13 @@
     <input type="submit" value="Restaurer" />
 </form>
 </fieldset>
+
+<ul>
+<p>Nombre d'image en base : ${nbImage}</p>
+#{list items:images, as:'image'}
+	<li>${image.fileName}</li>
+#{/list}
+</ul>
 
 
 #{a @Admin.add()}+Ajouter un article#{/a}

@@ -13,7 +13,7 @@ import play.mvc.Controller;
 public class Application extends Controller {
 
     public static void index() {
-        List<Post> posts = Post.allPublished().fetch(10);
+    	List<Post> posts = Post.find("published", true).fetch(10);
         render(posts);
     }
 
@@ -23,7 +23,8 @@ public class Application extends Controller {
     }
 
     public static void showByDateAndUrl(int annee, int mois, int jour, String url) {
-        Post post = Post.findByURL(url);
+    	
+    	Post post = Post.find("URL", url).first();
         if (post == null) {
             flash.error("Cet article n'existe pas.");
             notFound("Cet article n'existe pas.");
@@ -43,9 +44,11 @@ public class Application extends Controller {
     }
 
     public static void fileContent(String name) {
-        Image image = Image.findByName(name);
-        ByteArrayInputStream bis = new ByteArrayInputStream(image.data.getBytes());
-        renderBinary(bis, name);
+        Image image = Image.find("fileName",name).first();
+        if (image==null){
+        	notFound();
+        }
+        renderBinary(new ByteArrayInputStream(image.data));
     }
 
 }

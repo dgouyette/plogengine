@@ -7,6 +7,6 @@ public class PostBackup {
 	
 	public Post post;
 	
-	public List<ImageBackup> images = new ArrayList<ImageBackup>(); 
+	public List<ImageBackup> images = new ArrayList<ImageBackup>();
 
 }

@@ -10,6 +10,9 @@ import models.Image;
 import models.ImageBackup;
 import models.Post;
 import models.PostBackup;
+
+import org.apache.commons.lang.StringEscapeUtils;
+
 import play.Logger;
 import play.data.Upload;
 import play.mvc.Controller;
@@ -48,6 +51,7 @@ public class Backup extends Controller {
 		Logger.debug("backup : %s", id);
 		postToBackup.post = Post.findById(id);
 		
+		
 		if (postToBackup.post==null){
 			notFound();
 		}else{
@@ -59,6 +63,10 @@ public class Backup extends Controller {
 				imageBackups.add(new ImageBackup(image.fileName,Base64.encode(image.data.getBytes()), image.postId ));
 			}
 			postToBackup.images = imageBackups;
+			
+			postToBackup.post.title = StringEscapeUtils.escapeHtml(postToBackup.post.title);
+			postToBackup.post.chapeau = StringEscapeUtils.escapeHtml(postToBackup.post.chapeau);
+			postToBackup.post.content = StringEscapeUtils.escapeHtml(postToBackup.post.content);
 			renderText(getGson().toJson(postToBackup));
 		}
 		

@@ -41,7 +41,8 @@ public class Post extends Model {
 
 	@Override
 	public String toString() {
-		return "id= "+getId()+", title  = " + title + ", content = " + content;
+		return "id= " + getId() + ", title  = " + title + ", content = "
+				+ content;
 	}
 
 	// public static Post findById(Long id) {
@@ -58,20 +59,22 @@ public class Post extends Model {
 	// true);
 	// }
 
-	// public static Post findByURL(String url) {
-	// Post post= Model.all(Post.class).filter("url", url).get();
-	// //On incremente les hits uniquement si ce n'est pas un utilisateur qui
-	// affiche la page
-	// if (!UserServiceFactory.getUserService().isUserLoggedIn()){
-	// System.out.println(post.hits);
-	// if (post.hits==null){
-	// post.hits=0L;
-	// }
-	// post.hits=post.hits+1;
-	// post.update();
-	// }
-	// return post;
-	// }
-	//
+	public static Post findByURL(String url, boolean incremente) {
+
+		Post post = Post.find("url", url).first();
+		// //On incremente les hits uniquement si ce n'est pas un utilisateur
+		// qui
+		// affiche la page
+
+		if (incremente) {
+			if (post.hits == null) {
+				post.hits = 0L;
+			}
+
+			post.hits = post.hits + 1;
+			post.save();
+		}
+		return post;
+	}
 
 }

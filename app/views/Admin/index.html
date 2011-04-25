@@ -47,8 +47,8 @@
 
 <fieldset>
 <legend>Ajouter une nouvelle piece jointe</legend>
-<form action="@{Backup.restore()}" method="POST" enctype="multipart/form-data" accept="application/json">
-    <input type="file" id="file" name="file" />
+<form action="@{Backup.restore()}" method="POST"  enctype="multipart/form-data" accept="application/json">
+    <input type="file" id="files" name="files"  multiple="multiple"/>
     <input type="submit" value="Restaurer" />
 </form>
 </fieldset>
@@ -56,7 +56,7 @@
 <ul>
 <p>Nombre d'image en base : ${nbImage}</p>
 #{list items:images, as:'image'}
-	<li>${image.fileName}</li>
+	<li>${image.fileName} - #{a @Admin.deleteImage(image.id)}delete#{/a}</li>
 #{/list}
 </ul>
 

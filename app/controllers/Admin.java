@@ -25,46 +25,48 @@ public class Admin extends Controller {
 			login();
 		}
 	}
-	
-	public static boolean logged(){
+
+	public static boolean logged() {
 		return session.contains("user");
 	}
 
 	public static void login() {
 		render();
 	}
-	
-	public static void logout() {
-        session.remove("user");
-        login();
-    }
 
-	public static void authenticateOpenId(String action, String openid_identifier) {
+	public static void logout() {
+		session.remove("user");
+		login();
+	}
+
+	public static void authenticateOpenId(String action,
+			String openid_identifier) {
 		if (OpenID.isAuthenticationResponse()) {
-            OpenID.UserInfo verifiedUser = OpenID.getVerifiedID();
-            Map<String, String> params = verifiedUser.extensions;
-             
-            String userEmail = verifiedUser.extensions.get("email");
-            if (userEmail == null) {
-                flash.error("L'identification de votre compte sur le site  s'effectue avec votre email." +
-                        " Vous devez authoriser le site à accéder à votre email pour vous authentifier."
-                );
-                login();
-            }
-            
-            User user = User.findByMail(userEmail);
-            if (user==null){
-            	flash.error("Désolé votre compte n'existe pas. Demandez à l'équipe d'ajouter votre email "
-                        + userEmail
-                        + " pour pouvoir vous authentifier avec ce compte.");
-            	login();
-            }else{
-            	session.put("user", userEmail);
-    			index();
-            }
-			
+			OpenID.UserInfo verifiedUser = OpenID.getVerifiedID();
+			Map<String, String> params = verifiedUser.extensions;
+
+			String userEmail = verifiedUser.extensions.get("email");
+			if (userEmail == null) {
+				flash.error("L'identification de votre compte sur le site  s'effectue avec votre email."
+						+ " Vous devez authoriser le site à accéder à votre email pour vous authentifier.");
+				login();
+			}
+
+			User user = User.findByMail(userEmail);
+			if (user == null) {
+				flash.error("Désolé votre compte n'existe pas. Demandez à l'équipe d'ajouter votre email "
+						+ userEmail
+						+ " pour pouvoir vous authentifier avec ce compte.");
+				login();
+			} else {
+				session.put("user", userEmail);
+				index();
+			}
+
 		} else {
-			if (!OpenID.id(openid_identifier).required("email","http://axschema.org/contact/email").verify()) {
+			if (!OpenID.id(openid_identifier)
+					.required("email", "http://axschema.org/contact/email")
+					.verify()) {
 				flash.error("Cannot verify your OpenID");
 				login();
 			}
@@ -72,7 +74,7 @@ public class Admin extends Controller {
 	}
 
 	public static void index() {
-		List<Post> posts = Post.all().fetch();
+		List<Post> posts = Post.find("order by postedAt desc").fetch();
 		List<Image> images = Image.all().fetch();
 		int nbImage = images.size();
 		List<Tag> tags = Tag.findAll();
@@ -87,6 +89,12 @@ public class Admin extends Controller {
 
 	public static void add() {
 		render("@form");
+	}
+
+	public static void deleteImage(Long id) {
+		Image.findById(id)._delete();
+		flash.success("L'image " + id + " a été supprimée");
+		index();
 	}
 
 	public static void edit(Long id) {

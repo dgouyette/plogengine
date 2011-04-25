@@ -41,7 +41,8 @@ public class Backup extends Controller {
 
 	/**
 	 * Convertit un post (objet) en json et le renvoie au navigateur
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public static void backup(long id) throws IOException {
 		PostBackup postToBackup = new PostBackup();
@@ -57,7 +58,8 @@ public class Backup extends Controller {
 
 			Logger.info("postId %s nbImage : %s", id, images.size());
 			for (Image image : images) {
-				imageBackups.add(new ImageBackup(image.fileName,Codec.encodeBASE64(image.data), image.postId ));
+				imageBackups.add(new ImageBackup(image.fileName, Codec
+						.encodeBASE64(image.data), image.postId));
 			}
 			postToBackup.images = imageBackups;
 			renderText(getGson().toJson(postToBackup));
@@ -72,8 +74,13 @@ public class Backup extends Controller {
 	 * @param file
 	 * @throws Base64DecoderException
 	 */
-	public static void restore(Upload file) {
+	public static void restore(final List<Upload> files) {
+
+		
+		for (Upload file : files){
 		Logger.info("restore size %s: ", file.getSize());
+		
+		
 
 		InputStreamReader reader = new InputStreamReader(file.asStream());
 		PostBackup postToRestore = getGson().fromJson(reader, PostBackup.class);
@@ -84,7 +91,8 @@ public class Backup extends Controller {
 		Post postexistant = Post.findById(postToRestore.post.id);
 
 		if (postexistant != null) {
-			Logger.info("Le post n° %s existe deja,on l'update",postexistant.id);
+			Logger.info("Le post n° %s existe deja,on l'update",
+					postexistant.id);
 			postexistant = postToRestore.post;
 
 			List<ImageBackup> imagesToRestore = postToRestore.images;
@@ -92,7 +100,7 @@ public class Backup extends Controller {
 			// Sauvegarde l'image, meme si elle existe deja
 			for (ImageBackup imageToRestore : imagesToRestore) {
 				Image image = new Image();
-				image.data =Codec.decodeBASE64((imageToRestore.dataBase64));
+				image.data = Codec.decodeBASE64((imageToRestore.dataBase64));
 				image.postId = postexistant.id;
 				image.save();
 			}
@@ -103,11 +111,14 @@ public class Backup extends Controller {
 		} else {
 			Logger.info("Le post n'existe pas, on le cree");
 			Post postToCreate = postToRestore.post;
-			
-			postToCreate.title = StringEscapeUtils.unescapeHtml(postToCreate.title);
-			postToCreate.content = StringEscapeUtils.unescapeHtml(postToCreate.content);
-			postToCreate.chapeau = StringEscapeUtils.unescapeHtml(postToCreate.chapeau);
-			
+
+			postToCreate.title = StringEscapeUtils
+					.unescapeHtml(postToCreate.title);
+			postToCreate.content = StringEscapeUtils
+					.unescapeHtml(postToCreate.content);
+			postToCreate.chapeau = StringEscapeUtils
+					.unescapeHtml(postToCreate.chapeau);
+
 			Logger.info("L'id du post est %s", postToCreate.id);
 
 			List<ImageBackup> imagesToRestore = postToRestore.images;
@@ -115,21 +126,16 @@ public class Backup extends Controller {
 			// Sauvegarde l'image, meme si elle existe deja
 			for (ImageBackup imageToRestore : imagesToRestore) {
 				Image image = new Image();
-				image.data =Codec.decodeBASE64((imageToRestore.dataBase64));
+				image.data = Codec.decodeBASE64((imageToRestore.dataBase64));
 				image.fileName = imageToRestore.fileName;
 				image.postId = postToCreate.id;
 				image.save();
 			}
-			
+
 			postToCreate.merge();
-			
-			
-			
-			
-			
 
 		}
-
+		}
 		Admin.index();
 
 	}

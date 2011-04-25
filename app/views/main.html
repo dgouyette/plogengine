@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -37,6 +37,10 @@
 		<link rel="stylesheet" type="text/css" href="/public/markitup/skins/markitup/style.css" />
 		
 		
+		<link type="text/css" rel="stylesheet" href="@{'/public/stylesheets/openid/openid.css'}"/>
+		<script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery.js'}"></script>
+		<script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery-en.js'}"></script>
+		
 	
         #{get 'moreScripts' /}
     </head>
@@ -52,8 +56,15 @@
                  <ul>
                  <li class="active">#{a @Application.index()}Accueil#{/a}</li>
                 <!--li><a href="#">Contact</a></li-->
-               
+                #{ifLoggedIn}
                 <li>#{a @Admin.index()}Administration#{/a}</li>
+                 #{/ifLoggedIn}
+                  #{ifLoggedIn}
+                <li>#{a @Admin.logout()}Logout#{/a}</li>
+                 #{/ifLoggedIn}
+                  #{ifNotLoggedIn}
+                <li>#{a @Admin.login()}Login#{/a}</li>
+                 #{/ifNotLoggedIn}
                 </ul>
             </nav>
         </nav>

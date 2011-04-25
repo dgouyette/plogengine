@@ -11,6 +11,9 @@ import models.Image;
 import models.ImageBackup;
 import models.Post;
 import models.PostBackup;
+
+import org.apache.commons.lang.StringEscapeUtils;
+
 import play.Logger;
 import play.data.Upload;
 import play.libs.Codec;
@@ -71,7 +74,6 @@ public class Backup extends Controller {
 	 */
 	public static void restore(Upload file) {
 		Logger.info("restore size %s: ", file.getSize());
-		System.out.println("CONTENT"+file.getContentType());
 
 		InputStreamReader reader = new InputStreamReader(file.asStream());
 		PostBackup postToRestore = getGson().fromJson(reader, PostBackup.class);
@@ -101,7 +103,11 @@ public class Backup extends Controller {
 		} else {
 			Logger.info("Le post n'existe pas, on le cree");
 			Post postToCreate = postToRestore.post;
-			postToCreate.merge();
+			
+			postToCreate.title = StringEscapeUtils.unescapeHtml(postToCreate.title);
+			postToCreate.content = StringEscapeUtils.unescapeHtml(postToCreate.content);
+			postToCreate.chapeau = StringEscapeUtils.unescapeHtml(postToCreate.chapeau);
+			
 			Logger.info("L'id du post est %s", postToCreate.id);
 
 			List<ImageBackup> imagesToRestore = postToRestore.images;
@@ -114,6 +120,13 @@ public class Backup extends Controller {
 				image.postId = postToCreate.id;
 				image.save();
 			}
+			
+			postToCreate.merge();
+			
+			
+			
+			
+			
 
 		}
 

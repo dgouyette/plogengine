@@ -126,7 +126,7 @@ public class Admin extends Controller {
 	}
 
 	public static void upload(Upload upload, long postId) {
-		Image image = new Image(upload.asBytes(), postId, upload.getFieldName());
+		Image image = new Image(upload.asBytes(), postId, upload.getFileName());
 		image.save();
 		index();
 
@@ -137,8 +137,7 @@ public class Admin extends Controller {
 		index();
 	}
 
-	public static void saveTag(@NotNull @NotEmpty String tagName,
-			@NotNull @NotEmpty long postId) {
+	public static void saveTag(@NotNull @NotEmpty String tagName, @NotNull @NotEmpty long postId) {
 		Logger.info("Ajout du tag %s a l'article id %s", tagName, postId);
 		Tag tag = null;// Tag.findOrCreateByName(tagName);
 		Logger.info(" avant tag.id %s, tag.name %s, tag.postIds %s", tag.id,

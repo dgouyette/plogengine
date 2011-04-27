@@ -46,8 +46,8 @@ ${image.fileName}
 
 <fieldset>
 <legend>Ajouter une nouvelle piece jointe</legend>
-<form action="@{upload}" method="POST" enctype="multipart/form-data">
-    <input type="file" id="file" name="file" />
+<form action="@{Admin.upload}" method="POST" enctype="multipart/form-data">
+    <input type="file" id="upload" name="upload" />
 	<input type="text" name="postId" value="${post?.id}" />
     <input type="submit" value="Ajouter une photo" />
 </form>

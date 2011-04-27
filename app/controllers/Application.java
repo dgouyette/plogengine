@@ -20,8 +20,7 @@ public class Application extends Controller {
 		render("@show", post);
 	}
 
-	public static void showByDateAndUrl(int annee, int mois, int jour,
-			String url) {
+	public static void showByDateAndUrl(int annee, int mois, int jour,String url) {
 
 		Post post = Post.findByURL(url, !session.contains("user"));
 
@@ -32,6 +31,17 @@ public class Application extends Controller {
 		render("@show", post);
 	}
 
+	public static void showByUrl(String url) {
+		Post post = Post.findByURL(url, !session.contains("user"));
+
+		if (post == null) {
+			flash.error("Cet article n'existe pas.");
+			notFound("Cet article n'existe pas.");
+		}
+		render("@show", post);
+	}
+
+	
 	public static void show(Post post) {
 		render(post);
 	}

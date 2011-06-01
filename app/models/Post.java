@@ -6,22 +6,29 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 
 import play.db.jpa.Model;
+import play.modules.search.Field;
+import play.modules.search.Indexed;
 
+@Indexed
 @Entity
 public class Post extends Model {
 
+	@Field
 	public String title;
 
 	public String url;
 
 	@Lob
+	@Field
 	public String chapeau;
 
 	public Boolean published = false;
 
+	@Field
 	public Date postedAt = new Date();
 
 	@Lob
+	@Field
 	public String content;
 
 	public Long hits = 0L;

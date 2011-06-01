@@ -5,12 +5,14 @@ import java.util.List;
 
 import models.Image;
 import models.Post;
+import play.modules.search.Query;
+import play.modules.search.Search;
 import play.mvc.Controller;
 
 public class Application extends Controller {
 
 	public static void index() {
-		List<Post> posts = Post.find("published =true order by postedAt desc")
+		List<Post> posts = Post.find("published=true order by postedAt desc")
 				.fetch(10);
 		render(posts);
 	}
@@ -39,6 +41,17 @@ public class Application extends Controller {
 			notFound("Cet article n'existe pas.");
 		}
 		render("@show", post);
+	}
+	
+	public static void search(String search){
+		if (!search.isEmpty() && search!=null){
+			Query q = Search.search("title:"+search+" OR content:"+search+" OR chapeau:"+search, Post.class);
+			List<Post> posts = q.fetch();
+			render(posts, search);
+		}
+		else{
+			render();
+		}
 	}
 
 	

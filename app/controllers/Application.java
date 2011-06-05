@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.Image;
 import models.Post;
+import models.Recherche;
 import play.modules.search.Query;
 import play.modules.search.Search;
 import play.mvc.Controller;
@@ -45,6 +46,9 @@ public class Application extends Controller {
 	
 	public static void search(String search){
 		if (!search.isEmpty() && search!=null){
+			Recherche recherche = new Recherche();
+			recherche.keywords = search;
+			recherche.save();
 			Query q = Search.search("title:"+search+" OR content:"+search+" OR chapeau:"+search, Post.class);
 			List<Post> posts = q.fetch();
 			render(posts, search);

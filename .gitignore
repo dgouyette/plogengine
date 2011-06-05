@@ -17,4 +17,4 @@ true
 precompiled
 plui/
 .DS_Store
-
+data/*/*/*

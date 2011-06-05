@@ -6,6 +6,7 @@ import java.util.Map;
 
 import models.Image;
 import models.Post;
+import models.Recherche;
 import models.Tag;
 import models.User;
 import net.sf.oval.constraint.NotEmpty;
@@ -15,6 +16,8 @@ import play.Play;
 import play.cache.Cache;
 import play.data.Upload;
 import play.libs.OpenID;
+import play.modules.search.Search;
+import play.modules.search.SearchPlugin;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -180,6 +183,17 @@ public class Admin extends Controller {
 			flash.success("L'article " + post.id + " a bien ete mis a jour");
 		}
 
+		index();
+	}
+	
+	
+	public static void listSearch(){
+		renderJSON(Recherche.findAll());
+	}
+	
+	public static void reindex() throws Exception{
+		Search.rebuildAllIndexes ();
+		flash.success("Reindexation en cours");
 		index();
 	}
 

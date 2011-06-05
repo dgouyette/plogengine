@@ -72,6 +72,10 @@ public class Post extends Model {
 		// //On incremente les hits uniquement si ce n'est pas un utilisateur
 		// qui
 		// affiche la page
+		
+		if (null==post){
+			return null;
+		}
 
 		if (incremente) {
 			if (post.hits == null) {

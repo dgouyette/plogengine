@@ -33,7 +33,7 @@ public class Admin extends Controller {
 	}
 
 	public static boolean logged() {
-		return session.contains("user");
+		return session!=null && session.contains("user");
 	}
 
 	public static void login() {

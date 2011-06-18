@@ -18,3 +18,4 @@ precompiled
 plui/
 .DS_Store
 data/*/*/*
+.idea/*

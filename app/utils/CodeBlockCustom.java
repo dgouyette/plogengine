@@ -3,6 +3,7 @@ package utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import org.eclipse.mylyn.internal.wikitext.textile.core.Textile;
 import org.eclipse.mylyn.wikitext.core.parser.Attributes;
 import org.eclipse.mylyn.wikitext.core.parser.DocumentBuilder.BlockType;

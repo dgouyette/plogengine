@@ -2,6 +2,7 @@ package utils;
 
 import java.util.regex.Pattern;
 
+
 import org.eclipse.mylyn.internal.wikitext.textile.core.Textile;
 import org.eclipse.mylyn.internal.wikitext.textile.core.TextileContentState;
 import org.eclipse.mylyn.wikitext.core.parser.ImageAttributes;

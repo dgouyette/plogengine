@@ -111,8 +111,6 @@ public class Admin extends Controller {
 		if (id != null) {
 			List<Image> images = Image.find("postId", id).fetch();
 			Post post = Post.findById(id);
-			// List<Tag> tags = Tag.find("postIds", id).fetch();
-			// Tag.findAll();
 			render(post, images);
 		}
 		render();

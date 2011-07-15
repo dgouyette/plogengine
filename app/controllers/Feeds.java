@@ -59,7 +59,7 @@ public class Feeds extends Controller {
 		}
 
 		SyndFeedOutput output = new SyndFeedOutput();
-		renderXml(output.outputString(feed, true));
+		renderXml(output.outputString(feed));
 	}
 
 }

@@ -11,11 +11,12 @@ public class Textile2html {
         MarkupLanguage language = new TextileLanguageCustom();
         MarkupParser markupParser = new MarkupParser();
         markupParser.setMarkupLanguage(language);
+
         String htmlContent = "Erreur lors de la conversion textile";
         try {
             htmlContent = markupParser.parseToHtml(textile);
         } catch (Exception e) {
-            Logger.error("Erreur lors de la conversion textile to html textile = %s, erreur %s ",textile, e.getCause());
+            Logger.error("Erreur lors de la conversion textile to html textile = erreur %s ", e);
         }
         return htmlContent;
     }

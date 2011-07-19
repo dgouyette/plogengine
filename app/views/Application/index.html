@@ -1,18 +1,30 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-	#{if flash.error}
-		<p class="error">
-			${flash.error}
-		</p>
-	#{/if}
-	#{if flash.success}
-		<p class="success">
-			${flash.success}
-		</p>
-	#{/if}
+
+#{if flash.error}
+<p class="error">
+    ${flash.error}
+</p>
+#{/if}
+#{if flash.success}
+<p class="success">
+    ${flash.success}
+</p>
+#{/if}
 
 #{list items:posts, as:'post'}
-	#{displayPostResume value : post/}
+#{displayPostResume value : post/}
 #{/list}
 
+     <p>&#160;</p>
+     <p>&#160;</p>
+
+#{list items:0..count.page(pageSize)-1, as:'i'}
+    #{if i==page}
+        [${i+1}]&#160;
+    #{/if}
+    #{else}
+        #{a @index(i)}[${i+1}]#{/a}&#160;
+    #{/else}
+#{/list}

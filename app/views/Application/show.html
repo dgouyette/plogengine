@@ -2,4 +2,11 @@
 #{set title:post?.title/}
 
 #{displayPostFull value : post/}
+
+
+
+
+<p>P&eacute;c&eacute;dent : ${post.previous()?.title} </p>
+<p>Suivant : ${post.next()?.title}</p>
+
 	

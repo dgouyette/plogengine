@@ -1,14 +1,6 @@
 package controllers;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import models.Image;
-import models.Post;
-import models.Recherche;
-import models.Tag;
-import models.User;
+import models.*;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import play.Logger;
@@ -16,15 +8,18 @@ import play.Play;
 import play.cache.Cache;
 import play.data.Upload;
 import play.libs.OpenID;
-import play.modules.search.Search;
-import play.modules.search.SearchPlugin;
 import play.mvc.Before;
 import play.mvc.Controller;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 public class Admin extends Controller {
 
-	@Before(unless = { "login", "authenticateOpenId" })
+	//@Before(unless = { "login", "authenticateOpenId" })
 	static void checkAuthenticated() {
+        Logger.info("checkAuthenticate : "+Play.mode);
 		if (Play.mode == Play.Mode.DEV)
 			session.put("user", "dev");
 		if (!session.contains("user")) {
@@ -190,7 +185,7 @@ public class Admin extends Controller {
 	}
 	
 	public static void reindex() throws Exception{
-		Search.rebuildAllIndexes ();
+		//Search.rebuildAllIndexes ();
 		flash.success("Reindexation en cours");
 		index();
 	}

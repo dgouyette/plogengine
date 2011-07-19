@@ -71,7 +71,7 @@ public class Backup extends Controller {
 	 * @param file
 	 * @throws Base64DecoderException
 	 */
-	public static void restore(final List<Upload> files) {
+	public static void restore(final List<Upload> files) throws Exception {
 
 		
 		for (Upload file : files){
@@ -133,7 +133,7 @@ public class Backup extends Controller {
 
 		}
 		}
-		Admin.index();
+		Admin.reindex();
 
 	}
 

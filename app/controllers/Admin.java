@@ -8,6 +8,7 @@ import play.Play;
 import play.cache.Cache;
 import play.data.Upload;
 import play.libs.OpenID;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 public class Admin extends Controller {
 
-	//@Before(unless = { "login", "authenticateOpenId" })
+	@Before(unless = { "login", "authenticateOpenId" })
 	static void checkAuthenticated() {
         Logger.info("checkAuthenticate : "+Play.mode);
 		if (Play.mode == Play.Mode.DEV)

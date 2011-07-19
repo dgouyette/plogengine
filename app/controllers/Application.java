@@ -5,15 +5,11 @@ import models.Post;
 import models.Recherche;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.index.TermDocs;
 import org.apache.lucene.index.TermEnum;
-import org.apache.lucene.store.RAMDirectory;
 import play.Logger;
-import play.Play;
 import play.modules.search.Query;
 import play.modules.search.Search;
 import play.mvc.Controller;
-import play.utils.Utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -97,7 +93,7 @@ public class Application extends Controller {
             Recherche recherche = new Recherche();
             recherche.keywords = search;
             recherche.save();
-            Query q = Search.search("title:" + search + " OR content:" + search + " OR chapeau:" + search, Post.class);
+            Query q = Search.search("(title:" + search + " OR content:" + search + " OR chapeau:" + search +") AND published:true", Post.class);
             List<Post> posts = q.fetch();
             render(posts, search);
         } else {

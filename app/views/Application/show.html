@@ -4,9 +4,18 @@
 #{displayPostFull value : post/}
 
 
+<hr/>
 
 
-<p>P&eacute;c&eacute;dent : ${post.previous()?.title} </p>
-<p>Suivant : ${post.next()?.title}</p>
+<p>
+
+    #{if post.next()}
+    <a href="${post.next().url}"> &lt;&lt; ${post.next()?.title}</a>
+    #{/if}
+
+    #{if post.previous()}
+    <a href="${post.previous().url}"> ${post.previous()?.title} &gt;&gt;</a>
+    #{/if}
+</p>
 
 	

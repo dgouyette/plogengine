@@ -21,6 +21,7 @@ public class Post extends Model {
     @Field
     public String chapeau;
 
+    @Field
     public Boolean published = false;
 
     public Date postedAt = new Date();
@@ -35,8 +36,7 @@ public class Post extends Model {
 
     }
 
-    public Post(String title, String chapeau, String url, String content,
-                Boolean published) {
+    public Post(String title, String chapeau, String url, String content, Boolean published) {
         this.title = title;
         this.url = url;
         this.content = content;
@@ -46,8 +46,7 @@ public class Post extends Model {
 
     @Override
     public String toString() {
-        return "id= " + getId() + ", title  = " + title + ", content = "
-                + content;
+        return "id= " + getId() + ", title  = " + title + ", content = " + content;
     }
 
 
@@ -74,11 +73,11 @@ public class Post extends Model {
     }
 
     public Post previous() {
-        return Post.find("postedAt < ? order by postedAt desc", postedAt).first();
+        return Post.find("postedAt < ? and published=true order by postedAt desc", postedAt).first();
     }
 
     public Post next() {
-        return Post.find("postedAt > ? order by postedAt asc", postedAt).first();
+        return Post.find("postedAt > ? and published=true order by postedAt asc", postedAt).first();
     }
 
 

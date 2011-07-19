@@ -1,19 +1,12 @@
 package controllers;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import models.Image;
 import models.ImageBackup;
 import models.Post;
 import models.PostBackup;
-
 import org.apache.commons.lang.StringEscapeUtils;
-
 import play.Logger;
 import play.data.Upload;
 import play.libs.Codec;
@@ -21,8 +14,12 @@ import play.mvc.Controller;
 import utils.DateDeserializer;
 import utils.DateSerializer;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Backup extends Controller {
 

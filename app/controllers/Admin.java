@@ -8,7 +8,6 @@ import play.Play;
 import play.cache.Cache;
 import play.data.Upload;
 import play.libs.OpenID;
-import play.mvc.Before;
 import play.mvc.Controller;
 
 import java.util.Date;

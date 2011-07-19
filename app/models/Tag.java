@@ -1,12 +1,11 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
+import play.db.jpa.Model;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-
-import play.db.jpa.Model;
+import java.util.ArrayList;
+import java.util.List;
 
 
 

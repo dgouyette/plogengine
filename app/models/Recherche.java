@@ -1,8 +1,8 @@
 package models;
 
-import javax.persistence.Entity;
-
 import play.db.jpa.Model;
+
+import javax.persistence.Entity;
 
 @Entity
 public class Recherche extends Model{

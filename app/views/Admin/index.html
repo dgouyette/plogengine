@@ -1,63 +1,69 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+#{set 'moreScripts'}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datatable').dataTable();
+    });
+</script>
+#{/set}
+
 #{if flash.success}
-    	<div class="success">
-    		${flash.success}
-    	</div>
-    #{/if}
-    #{if flash.error || error}
-    	<div class="error">
-    		${error ?: flash.error}
-    	</div>
-    #{/if}
-
-
-
-<table id="articles" width="100%" border="1px">
-<thead>
-<tr>
-	
-	<th>id</th>
-	<th>titre</th>
-	<th>hits</th>
-	<th>published</th>
-	<th>postedAt</th>
-	<th>Action</th>	
-</tr>
-</thead>
-<tbody>
-#{list items:posts, as:'post'}
-	#{displayPostAdmin value : post/}
-#{/list}
-</tbody>
-</table>
-
-<p>
-<b>Tags</b> : ${tags}
-</p>	
-	
-#{if flash.success}
-    <p class="success">
-        ${flash.success}
-    </p>
+<div class="success">
+    ${flash.success}
+</div>
+#{/if}
+#{if flash.error || error}
+<div class="error">
+    ${error ?: flash.error}
+</div>
 #{/if}
 
 
+<table id="articles" width="100%" border="1px" class="datatable">
+    <thead>
+    <tr>
+
+        <th>id</th>
+        <th>titre</th>
+        <th>hits</th>
+        <th>published</th>
+        <th>postedAt</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    #{list items:posts, as:'post'}
+    #{displayPostAdmin value : post/}
+    #{/list}
+    </tbody>
+</table>
+
+<p>
+    <b>Tags</b> : ${tags}
+</p>
+
+#{if flash.success}
+<p class="success">
+    ${flash.success}
+</p>
+#{/if}
+
 
 <fieldset>
-<legend>Ajouter une nouvelle piece jointe</legend>
-<form action="@{Backup.restore()}" method="POST"  enctype="multipart/form-data" accept="application/json">
-    <input type="file" id="files" name="files"  multiple="multiple"/>
-    <input type="submit" value="Restaurer" />
-</form>
+    <legend>Ajouter une nouvelle piece jointe</legend>
+    <form action="@{Backup.restore()}" method="POST" enctype="multipart/form-data" accept="application/json">
+        <input type="file" id="files" name="files" multiple="multiple"/>
+        <input type="submit" value="Restaurer"/>
+    </form>
 </fieldset>
 
 <ul>
-<p>Nombre d'image en base : ${nbImage}</p>
-#{list items:images, as:'image'}
-	<li>${image.fileName} - #{a @Admin.deleteImage(image.id)}delete#{/a}</li>
-#{/list}
+    <p>Nombre d'image en base : ${nbImage}</p>
+    #{list items:images, as:'image'}
+    <li>${image.fileName} - #{a @Admin.deleteImage(image.id)}delete#{/a}</li>
+    #{/list}
 </ul>
 
 

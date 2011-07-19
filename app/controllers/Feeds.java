@@ -1,21 +1,16 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.sun.syndication.feed.synd.*;
+import com.sun.syndication.io.FeedException;
+import com.sun.syndication.io.SyndFeedOutput;
 import models.Post;
 import play.Logger;
 import play.cache.Cache;
 import play.mvc.Controller;
 import utils.Textile2html;
 
-import com.sun.syndication.feed.synd.SyndContent;
-import com.sun.syndication.feed.synd.SyndContentImpl;
-import com.sun.syndication.feed.synd.SyndEntry;
-import com.sun.syndication.feed.synd.SyndEntryImpl;
-import com.sun.syndication.feed.synd.SyndFeedImpl;
-import com.sun.syndication.io.FeedException;
-import com.sun.syndication.io.SyndFeedOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Feeds extends Controller {
 

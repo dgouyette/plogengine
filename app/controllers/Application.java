@@ -38,11 +38,13 @@ public class Application extends Controller {
     }
 
     public static void showByDateAndUrl(int annee, int mois, int jour, String url) {
+        List<Post> posts = Post.find("published=true order by postedAt desc").from(0).fetch(5);
+
         Post post = Post.findByURL(url, !session.contains("user"));
         if (post == null) {
             notFound("Cet article n'existe pas.");
         }
-        render("@show", post);
+        render("@show", post, posts);
     }
 
 

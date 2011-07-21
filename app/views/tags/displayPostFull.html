@@ -1,30 +1,38 @@
-<article>
-	<h2 class="post-title">#{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'), _value.postedAt.format('MM'), _value.postedAt.format('dd'), _value.url)}${_value.title}#{/a}</h2>
-	<div class="post-metadata">
-		<p class="post-author">
-			<small>Damien GOUYETTE | ${_value.postedAt?.format('dd MMM yyyy')} |  ${_value.hits} HITS
-			#{ifLoggedIn}
-				 - #{a @Admin.form(_value.id)}Editer#{/a}
-			#{/ifLoggedIn}
-			</small>	
-		</p>
-		 <p>#{textile2html _value?.chapeau/}</p>
-		 
-		 <p> #{textile2html _value.content/}</p>
-	</div>
-</article>
+<article class="post">
+    <h2 class="entry-title">#{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'),
+        _value.postedAt.format('MM'), _value.postedAt.format('dd'), _value.url)}${_value.title}#{/a}</h2>
+    <div class="post-metadata">
+        <footer class="post-meta">
+            <p>
+                par <span class="author vcard"><a class="url fn n" href="#">Damien GOUYETTE</a></span>
+                | ${_value.hits} HITS
+                #{ifLoggedIn}
+                - #{a @Admin.form(_value.id)}Editer#{/a}
+                #{/ifLoggedIn}
+                le
+                <time pubdate="${_value.postedAt?.format('dd/MM/yyyy')}">${_value.postedAt?.format('dd/MM/yyyy')}</time>
+            </p>
+        </footer>
+        <p>&#160;</p>
+        <p>#{textile2html _value?.chapeau/}</p>
+        <p> #{textile2html _value.content/}</p>
 
+    </div>
+</article>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-  /**
-    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
-    */
-	//disqus_developer = 0;  
-  (function() {
-   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = 'http://damiengouyettesblog.disqus.com/embed.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    /**
+     * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+     */
+    //disqus_developer = 0;
+    (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = 'http://damiengouyettesblog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=damiengouyettesblog">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=damiengouyettesblog">comments
+    powered by Disqus.</a></noscript>

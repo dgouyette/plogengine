@@ -1,163 +1,301 @@
 #{extends 'main.html' /}
 #{set title:post?.title/}
 #{set 'moreScripts'}
+#{script id:'jquery', src:'jquery/1.5.1/jquery.min.js' /}
 
-<script type="text/javascript">  
-  			$(document).ready(function()	{
-			    $('textarea').markItUp(mySettings);
-			    $('.datepicker').datepicker();
-				});
-			
+<script type="text/javascript" src="/public/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="/public/markitup/sets/textile/set.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('textarea').markItUp(mySettings);
+        //$('.datepicker').datepicker();
+    });
+
 </script>
 #{/set}
 
 
+#{set 'moreStyles'}
+<link rel="stylesheet" type="text/css" href="/public/markitup/skins/markitup/style.css"/>
+#{/set}
 
 
-<hr/>
-Tags ${tags}: 
+<!--
+Tags ${tags}:
 #{form @saveTag(), id: 'adminForm'}
-	 	<p>
-	 	#{field 'tagName'}
-        <label>Tag:</label>
-        <input type="text" name="${field.name}" class="${field.errorClass}" />
-        #{/field}
-        </p>
-        <p>
-       #{field 'postId'}
-        <input type="hidden" name="${field.name}" value="${post?.id}"/>
-        #{/field}  
-        </p>
-        <input id="formSubmitTag" type="submit" value="add" />
+<p>
+    #{field 'tagName'}
+    <label>Tag:</label>
+    <input type="text" name="${field.name}" class="${field.errorClass}"/>
+    #{/field}
+</p>
+<p>
+    #{field 'postId'}
+    <input type="hidden" name="${field.name}" value="${post?.id}"/>
+    #{/field}
+</p>
+<input id="formSubmitTag" type="submit" value="add"/>
 #{/form}
 
 <hr/>
 
-Images : 
+-->
+
+
+#{form @save(post?.id), id: 'adminForm'}
+#{ifErrors}
+<p class="error">
+    Please correct these errors.
+</p>
+#{/ifErrors}
+
+<p>
+    #{field 'post.id'}
+    <label>Id:</label>
+    <input type="text" name="${field.name}" value="${field.value}" class="${field.errorClass}" size="100"/>
+    #{/field}
+</p>
+
+<p>
+    #{field 'post.title'}
+    <label>Titre:</label>
+    <input type="text" name="${field.name}" value="${field.value}" class="${field.errorClass}" size="100"/>
+    #{/field}
+</p>
+
+<p>
+    #{field 'post.url'}
+    <label>URL:</label>
+    <input type="text" name="${field.name}" value="${field.value}" class="${field.errorClass}" size="100"/>
+    #{/field}
+</p>
+
+#{if post?.id!= null}
+<p>
+    #{field 'postedAt'}
+    <label>postedAt:</label>
+    <input type="text" name="${field.name}" value="${post?.postedAt.format('yyyy/MM/dd')}" class="datepicker"/>
+    #{/field}
+</p>
+#{/if}
+
+<p>
+    #{field 'published'}
+    <label>published:</label>
+    <input type="checkbox" name="${field.name}" ${post?.published ? 'checked="checked"'.raw(): ""}
+    class="${field.errorClass}" />
+    #{/field}
+</p>
+
+<p>
+    #{field 'chapeau'}
+    <label>Chapeau:</label><br/>
+    <textarea id="chapeau" name="${field.name}">${post?.chapeau}</textarea>
+    #{/field}
+</p>
+
+
+<p>
+    #{field 'content'}
+    <label>Contenu:</label><br/>
+    <textarea id="content" cols="80" rows="20" name="${field.name}">${post?.content?.raw()}</textarea>
+
+    #{/field}
+</p>
+<p>
+    <input id="formSubmit" type="submit" value="Valider"/>
+</p>
+
+#{/form}
+
+<hr/>
+
+
+Images :
 #{list items:images, as:'image'}
 <p>
 <ul>
-<li>
-${image.fileName}
-#{a @Admin.deleteImage(image.id)}supprimer#{/a}
-</li>
-#{/list}
+    <li>
+        ${image.fileName}
+        #{a @Admin.deleteImage(image.id)}supprimer#{/a}
+    </li>
+    #{/list}
+</ul>
 </p>
 
 <fieldset>
-<legend>Ajouter une nouvelle piece jointe</legend>
-<form action="@{Admin.upload}" method="POST" enctype="multipart/form-data">
-    <input type="file" id="upload" name="upload" />
-	<input type="text" name="postId" value="${post?.id}" />
-    <input type="submit" value="Ajouter une photo" />
-</form>
+    <legend>Ajouter une nouvelle piece jointe</legend>
+    <form action="@{Admin.upload}" method="POST" enctype="multipart/form-data">
+        <input type="file" id="upload" name="upload"/>
+        <input type="text" name="postId" value="${post?.id}"/>
+        <input type="submit" value="Ajouter une photo"/>
+    </form>
 </fieldset>
 
-#{form @save(post?.id), id: 'adminForm'}
-	 #{ifErrors}
-        <p class="error">
-            Please correct these errors.
-        </p>
-    #{/ifErrors}
-    
-    <p>
-    	<label>id : </label>
-    	${post?.id}
-    </p>
-     
-    <p>
-        #{field 'title'}
-        <label>Titre:</label>
-        <input type="text" name="${field.name}" value="${post?.title}" class="${field.errorClass}" />
-        #{/field}
-    </p>
-    
-     <p>
-        #{field 'url'}
-        <label>URL:</label>
-        <input type="text" name="${field.name}" value="${post?.url}" class="${field.errorClass}" />
-        #{/field}
-    </p>
-    
-    #{if post?.id!= null}
-    <p>
-        #{field 'postedAt'}
-        <label>postedAt:</label>
-        <input type="text" name="${field.name}" value="${post?.postedAt.format('yyyy/MM/dd')}" class="datepicker" />
-        #{/field}
-    </p>
-    #{/if}
-    
-    <p>
-        #{field 'published'}
-        <label>published:</label>
-        <input type="checkbox" name="${field.name}" ${post?.published ? 'checked="checked"'.raw(): ""} class="${field.errorClass}" />
-        #{/field}
-    </p>
-    
-    <p>
-        #{field 'chapeau'}
-        <label>Chapeau:</label><br/>
-        <textarea id="chapeau"  name="${field.name}" >${post?.chapeau}</textarea>
-        #{/field}
-    </p>
-    
-    
-    
-     <p>
-        #{field 'content'}
-        <label>Contenu:</label><br/>
-        <textarea id="content" cols="80" rows="20"  name="${field.name}">${post?.content?.raw()}</textarea>
-       
-        #{/field}
-    </p>
-     <p>
-        <input id="formSubmit" type="submit" value="Valider" />
-    </p>
 
-#{/form}
 <h2>Liste des langages support&eacute;s pour la coloration syntaxique :</h2>
 <table>
-	<tr><th>Language</th><th>code</th></tr>
-	<tr><td>Bison</td><td>bison</td></tr>
-	<tr><td>C</td><td>c</td></tr>
-	<tr><td>C++</td><td>cpp</td></tr>
-	<tr><td>C#</td><td>csharp</td></tr>
-	<tr><td>ChangeLog</td><td>changelog</td></tr>
-	<tr><td>CSS</td><td>css</td></tr>
-	<tr><td>Desktop files</td><td>desktop</td></tr>
-	<tr><td>Diff</td><td>diff</td></tr>
-	<tr><td>Flex</td><td>flex</td></tr>
-	<tr><td>GLSL</td><td>glsl</td></tr>
-	<tr><td>Haxe</td><td>haxe</td></tr>
-	<tr><td>HTML</td><td>html</td></tr>
-	<tr><td>Java</td><td>java</td></tr>
-	<tr><td>Java properties files</td><td>properties</td></tr>
-	<tr><td>JavaScript</td><td>javascript</td></tr>
-	<tr><td>JavaScript with DOM</td><td>javascript_dom</td></tr>
-	<tr><td>LaTeX</td><td>latex</td></tr>
-	<tr><td>LDAP files</td><td>ldap</td></tr>
-	<tr><td>Log files</td><td>log</td></tr>
-	<tr><td>LSM (Linux Software Map) files</td><td>lsm</td></tr>
-	<tr><td>M4</td><td>m4</td></tr>
-	<tr><td>Makefile</td><td>makefile</td></tr>
-	<tr><td>Objective Caml</td><td>caml</td></tr>
-	<tr><td>Oracle SQL</td><td>oracle</td></tr>
-	<tr><td>Pascal</td><td>pascal</td></tr>
-	<tr><td>Perl</td><td>perl</td></tr>
-	<tr><td>PHP</td><td>php</td></tr>
-	<tr><td>Prolog</td><td>prolog</td></tr>
-	<tr><td>Python</td><td>python</td></tr>
-	<tr><td>RPM spec files</td><td>spec</td></tr>
-	<tr><td>Ruby</td><td>ruby</td></tr>
-	<tr><td>S-Lang</td><td>slang</td></tr>
-	<tr><td>Scala</td><td>scala</td></tr>
-	<tr><td>Shell</td><td>sh</td></tr>
-	<tr><td>SQL</td><td>sql</td></tr>
-	<tr><td>Standard ML</td><td>sml</td></tr>
-	<tr><td>Tcl</td><td>tcl</td></tr>
-	<tr><td>XML</td><td>xml</td></tr>
-	<tr><td>Xorg configuration files</td><td>xorg</td></tr>
+    <tr>
+        <th>Language</th>
+        <th>code</th>
+    </tr>
+    <tr>
+        <td>Bison</td>
+        <td>bison</td>
+    </tr>
+    <tr>
+        <td>C</td>
+        <td>c</td>
+    </tr>
+    <tr>
+        <td>C++</td>
+        <td>cpp</td>
+    </tr>
+    <tr>
+        <td>C#</td>
+        <td>csharp</td>
+    </tr>
+    <tr>
+        <td>ChangeLog</td>
+        <td>changelog</td>
+    </tr>
+    <tr>
+        <td>CSS</td>
+        <td>css</td>
+    </tr>
+    <tr>
+        <td>Desktop files</td>
+        <td>desktop</td>
+    </tr>
+    <tr>
+        <td>Diff</td>
+        <td>diff</td>
+    </tr>
+    <tr>
+        <td>Flex</td>
+        <td>flex</td>
+    </tr>
+    <tr>
+        <td>GLSL</td>
+        <td>glsl</td>
+    </tr>
+    <tr>
+        <td>Haxe</td>
+        <td>haxe</td>
+    </tr>
+    <tr>
+        <td>HTML</td>
+        <td>html</td>
+    </tr>
+    <tr>
+        <td>Java</td>
+        <td>java</td>
+    </tr>
+    <tr>
+        <td>Java properties files</td>
+        <td>properties</td>
+    </tr>
+    <tr>
+        <td>JavaScript</td>
+        <td>javascript</td>
+    </tr>
+    <tr>
+        <td>JavaScript with DOM</td>
+        <td>javascript_dom</td>
+    </tr>
+    <tr>
+        <td>LaTeX</td>
+        <td>latex</td>
+    </tr>
+    <tr>
+        <td>LDAP files</td>
+        <td>ldap</td>
+    </tr>
+    <tr>
+        <td>Log files</td>
+        <td>log</td>
+    </tr>
+    <tr>
+        <td>LSM (Linux Software Map) files</td>
+        <td>lsm</td>
+    </tr>
+    <tr>
+        <td>M4</td>
+        <td>m4</td>
+    </tr>
+    <tr>
+        <td>Makefile</td>
+        <td>makefile</td>
+    </tr>
+    <tr>
+        <td>Objective Caml</td>
+        <td>caml</td>
+    </tr>
+    <tr>
+        <td>Oracle SQL</td>
+        <td>oracle</td>
+    </tr>
+    <tr>
+        <td>Pascal</td>
+        <td>pascal</td>
+    </tr>
+    <tr>
+        <td>Perl</td>
+        <td>perl</td>
+    </tr>
+    <tr>
+        <td>PHP</td>
+        <td>php</td>
+    </tr>
+    <tr>
+        <td>Prolog</td>
+        <td>prolog</td>
+    </tr>
+    <tr>
+        <td>Python</td>
+        <td>python</td>
+    </tr>
+    <tr>
+        <td>RPM spec files</td>
+        <td>spec</td>
+    </tr>
+    <tr>
+        <td>Ruby</td>
+        <td>ruby</td>
+    </tr>
+    <tr>
+        <td>S-Lang</td>
+        <td>slang</td>
+    </tr>
+    <tr>
+        <td>Scala</td>
+        <td>scala</td>
+    </tr>
+    <tr>
+        <td>Shell</td>
+        <td>sh</td>
+    </tr>
+    <tr>
+        <td>SQL</td>
+        <td>sql</td>
+    </tr>
+    <tr>
+        <td>Standard ML</td>
+        <td>sml</td>
+    </tr>
+    <tr>
+        <td>Tcl</td>
+        <td>tcl</td>
+    </tr>
+    <tr>
+        <td>XML</td>
+        <td>xml</td>
+    </tr>
+    <tr>
+        <td>Xorg configuration files</td>
+        <td>xorg</td>
+    </tr>
 </table>
 
 

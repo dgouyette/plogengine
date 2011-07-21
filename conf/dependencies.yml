@@ -14,11 +14,3 @@ repositories:
             artifact:   "http://nexus.cestpasdur.com/nexus/content/groups/all/"
             contains:
                 - rome -> *
-
-
-#Deleted: /Users/damiengouyette/developpement/sources/play/plogengine/lib/org.eclipse.mylyn.wikitext.confluence.core_1.4.0.I20100829-0800-e3x.jar
-#Deleted: /Users/damiengouyette/developpement/sources/play/plogengine/lib/org.eclipse.mylyn.wikitext.core_1.4.0.I20100829-0800-e3x.jar
-#Deleted: /Users/damiengouyette/developpement/sources/play/plogengine/lib/org.eclipse.mylyn.wikitext.textile.core_1.4.0.I20100829-0800-e3x.jar
-#Deleted: /Users/damiengouyette/developpement/sources/play/plogengine/lib/rome-1.0.jar
-#Deleted: /Users/damiengouyette/developpement/sources/play/plogengine/modules/.DS_Store
-#Deleted: /Users/damiengouyette/developpement/sources/play/plogengine/modules/search-2.0

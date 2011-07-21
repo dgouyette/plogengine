@@ -1,6 +1,15 @@
 #{extends 'main.html' /}
 #{set pageTitle:'Authentification' /}
 
+
+#{set 'moreStyles'}
+<link type="text/css" rel="stylesheet" href="@{'/public/stylesheets/openid/openid.css'}"/>
+#{/set}
+#{set 'moreScripts'}
+<script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery-en.js'}"></script>
+#{/set}
+
 <script type="text/javascript">
     $(document).ready(function() {
         openid.init('openid_identifier');

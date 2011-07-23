@@ -78,8 +78,7 @@ public class Admin extends Controller {
         List<Post> posts = Post.find("order by postedAt desc").fetch();
         List<Image> images = Image.all().fetch();
         int nbImage = images.size();
-        List<Tag> tags = Tag.findAll();
-        render(posts, images, nbImage, tags);
+        render(posts, images, nbImage);
     }
 
     public static void cachereset() {
@@ -136,22 +135,7 @@ public class Admin extends Controller {
         index();
     }
 
-    public static void saveTag(@NotNull @NotEmpty String tagName,
-                               @NotNull @NotEmpty long postId) {
-        Logger.info("Ajout du tag %s a l'article id %s", tagName, postId);
-        Tag tag = null;// Tag.findOrCreateByName(tagName);
-        Logger.info(" avant tag.id %s, tag.name %s, tag.postIds %s", tag.id,
-                tag.name, tag.postIds);
-        tag.postIds.add(postId);
-        if (tag.id == null) {
-            tag.save();
-        } else {
-            tag.save();
-        }
-        Logger.info("apres  tag.id %s, tag.name %s, tag.postIds %s", tag.id,
-                tag.name, tag.postIds);
-        form(postId);
-    }
+
 
     @SuppressWarnings("deprecation")
     public static void save(@Valid Post post) {

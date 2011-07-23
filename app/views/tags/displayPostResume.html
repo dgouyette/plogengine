@@ -15,7 +15,11 @@
                 le
                 <time pubdate="${_value.postedAt?.format('dd/MM/yyyy')}">${_value.postedAt?.format('dd/MM/yyyy')}</time>
             </p>
-            #{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'), _value.postedAt.format('MM'), _value.postedAt.format('dd'), _value.url), class: 'more-link'}En savoir +#{/a}
+            #{a @Application.showByDateAndUrl(_value.postedAt.format('yyyy'), _value.postedAt.format('MM'),
+            _value.postedAt.format('dd'), _value.url), class: 'more-link'}En savoir +#{/a}
         </footer>
     </div>
 </article>
+
+
+<p><hr/></p>

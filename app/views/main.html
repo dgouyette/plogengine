@@ -8,90 +8,78 @@
           href="http://feeds.feedburner.com/CestpasdurcomTutoriauxEtRessourcesDuWeb"/>
     #{javascript/}
     #{stylesheets/}
-
 </head>
 <body onload="sh_highlightDocument('/public/javascripts/shjs/0.6/', '.js');">
 
-<div id="wrapper">
-    #{header/}
+<div class="container">
 
-    <div id="main" class="clearfix">
-        <nav id="menu" class="clearfix" role="navigation">
-            <ul>
-                <li class="current">#{a @Application.index()}Accueil#{/a}</li>
+    <div class="span-24 last">
+        #{header/}
+        <nav id="banner" role="navigation">
+            <div class="span-4 active">#{a @Application.index()}Accueil#{/a}</div>
+            #{ifLoggedIn}
+            <div class="span-4">#{a @Admin.index()}Administration#{/a}</div>
+            #{/ifLoggedIn}
+            #{ifLoggedIn}
+            <div class="span-4">#{a @Admin.logout()}Logout#{/a}</div>
+            #{/ifLoggedIn}
+            #{ifNotLoggedIn}
+            <div class="span-4">#{a @Admin.login()}Login#{/a}</div>
+            #{/ifNotLoggedIn}
 
-                #{ifLoggedIn}
-                <li>#{a @Admin.index()}Administration#{/a}</li>
-                #{/ifLoggedIn}
-                #{ifLoggedIn}
-                <li>#{a @Admin.logout()}Logout#{/a}</li>
-                #{/ifLoggedIn}
-                #{ifNotLoggedIn}
-                <li>#{a @Admin.login()}Login#{/a}</li>
-                #{/ifNotLoggedIn}
+            <div class="span-6 last">
+
+                #{form @Application.search()}
+                <input name="search" value="${search}" placeholder="Rechercher..."/><input
+                    type="submit"
+                    value="Go"/>
+                #{/form}
+            </div>
+
+
             </ul>
         </nav>
-        <div id="content" role="main">
-            #{doLayout /}
-        </div>
-
-        <aside id="sidebar" role="complementary">
-
-            <aside class="widget">
-                #{form @Application.search()}
-                <input class="right" name="search" value="${search}" placeholder="Rechercher..."/><input type="submit"
-                                                                                                         value="Go"/>
-                #{/form}
-            </aside>
-            <!-- .widget -->
-            <aside class="widget">
-                <h3>Derniers articles</h3>
-                <tbody>
-
-                <ul>
-                    #{list items:posts, as:'post'}
-                    <li>#{a @Application.showByDateAndUrl(post.postedAt.format('yyyy'),
-                        post.postedAt.format('MM'), post.postedAt.format('dd'), post.url)}${post.title}#{/a}
-                    </li>
-                    #{/list}
-                </ul>
-            </aside>
-
-
-        </aside>
-
     </div>
 
-    <footer id="footer">
-        <!-- You're free to remove the credit link to Jayj.dk in the footer, but please, please leave it there :) -->
-        <p>
-            Copyright © 2011 <a href="#">CestPasDur.com</a>
-            <span class="sep">|</span>
-            Powered by <a href="http://www.playframework.org" target="_blank">PlayFramework!</a>
-            <span class="sep">|</span> Design by <a href="http://jayj.dk" title="Design by Jayj.dk">Jayj.dk</a>
+    <div class="span-20 last">
+        #{doLayout /}
+    </div>
 
-        </p>
-    </footer>
+
+
+    <div class="span-20 last">
+        <footer id="footer">
+            <!-- You're free to remove the credit link to Jayj.dk in the footer, but please, please leave it there :) -->
+            <p class="center">
+                Copyright © 2011 <a href="#">CestPasDur.com</a>
+                <span class="sep">|</span>
+                Powered by <a href="http://www.playframework.org" target="_blank">PlayFramework!</a>
+                <span class="sep">|</span> Design by <a href="http://jayj.dk" title="Design by Jayj.dk">Jayj.dk</a>
+
+            </p>
+        </footer>
+
+    </div>
 
 </div>
 
 
 <#{marqueurStat/}>
 
-<script type="text/javascript">
-    //<![CDATA[
-    (function() {
-        var links = document.getElementsByTagName('a');
-        var query = '?';
-        for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#disqus_thread') >= 0) {
-                query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+    <script type="text/javascript">
+        //<![CDATA[
+        (function() {
+            var links = document.getElementsByTagName('a');
+            var query = '?';
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].href.indexOf('#disqus_thread') >= 0) {
+                    query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
             }
-        }
-        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/damiengouyettesblog/get_num_replies.js' + query + '"></' + 'script>');
-    })();
-    //]]>
-</script>
+            document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/damiengouyettesblog/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+        //]]>
+    </script>
 
 </body>
 </html>

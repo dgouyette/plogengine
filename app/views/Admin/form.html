@@ -21,26 +21,6 @@
 #{/set}
 
 
-<!--
-Tags ${tags}:
-#{form @saveTag(), id: 'adminForm'}
-<p>
-    #{field 'tagName'}
-    <label>Tag:</label>
-    <input type="text" name="${field.name}" class="${field.errorClass}"/>
-    #{/field}
-</p>
-<p>
-    #{field 'postId'}
-    <input type="hidden" name="${field.name}" value="${post?.id}"/>
-    #{/field}
-</p>
-<input id="formSubmitTag" type="submit" value="add"/>
-#{/form}
-
-<hr/>
-
--->
 
 
 #{form @save(post?.id), id: 'adminForm'}
@@ -89,17 +69,17 @@ Tags ${tags}:
 </p>
 
 <p>
-    #{field 'chapeau'}
+    #{field 'post.chapeau'}
     <label>Chapeau:</label><br/>
-    <textarea id="chapeau" name="${field.name}">${post?.chapeau}</textarea>
+    <textarea id="chapeau" name="${field.name}">${field?.value}</textarea>
     #{/field}
 </p>
 
 
 <p>
-    #{field 'content'}
+    #{field 'post.content'}
     <label>Contenu:</label><br/>
-    <textarea id="content" cols="80" rows="20" name="${field.name}">${post?.content?.raw()}</textarea>
+    <textarea id="content" cols="80" rows="20" name="${field.name}">${field?.value?.raw()}</textarea>
 
     #{/field}
 </p>

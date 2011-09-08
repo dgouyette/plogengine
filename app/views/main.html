@@ -13,73 +13,52 @@
 
 <div class="container">
 
-    <div class="span-24 last">
-        #{header/}
-        <nav id="banner" role="navigation">
-            <div class="span-4 active">#{a @Application.index()}Accueil#{/a}</div>
-            #{ifLoggedIn}
-            <div class="span-4">#{a @Admin.index()}Administration#{/a}</div>
-            #{/ifLoggedIn}
-            #{ifLoggedIn}
-            <div class="span-4">#{a @Admin.logout()}Logout#{/a}</div>
-            #{/ifLoggedIn}
-            #{ifNotLoggedIn}
-            <div class="span-4">#{a @Admin.login()}Login#{/a}</div>
-            #{/ifNotLoggedIn}
+    <!-- topbar -->
+    <div class="topbar">
+        <div class="fill">
+            <div class="container">
 
-            <div class="span-6 last">
+                <ul class="nav">
+                    <li class="active">#{a @Application.index()}Accueil#{/a}</li>
+
+                    #{ifLoggedIn}
+                    <li>#{a @Admin.index()}Administration#{/a}</li>
+                    #{/ifLoggedIn}
+
+                    #{ifLoggedIn}
+                    <li>#{a @Admin.logout()}Logout#{/a}</li>
+                    #{/ifLoggedIn}
+                    #{ifNotLoggedIn}
+                    <li>#{a @Admin.login()}Login#{/a}</li>
+                    #{/ifNotLoggedIn}
+                </ul>
 
                 #{form @Application.search()}
-                <input name="search" value="${search}" placeholder="Rechercher..."/><input
-                    type="submit"
-                    value="Go"/>
+                <input name="search" value="${search}" placeholder="Rechercher..."/>
+                <input type="submit" value="Go"/>
                 #{/form}
+
             </div>
-
-
-            </ul>
-        </nav>
+        </div>
     </div>
 
-    <div class="span-20 last">
-        #{doLayout /}
-    </div>
+    <p>&#160;</p>
 
+    <p>&#160;</p>
+    <!-- dolayout -->
+    #{doLayout /}
+    <!-- end dolayout -->
 
+    <hr/>
+    <p class="center">
+        Copyright © 2011 <a href="#">CestPasDur.com</a>
+        <span class="sep">|</span>
+        Powered by <a href="http://www.playframework.org" target="_blank">PlayFramework!</a>
 
-    <div class="span-20 last">
-        <footer id="footer">
-            <!-- You're free to remove the credit link to Jayj.dk in the footer, but please, please leave it there :) -->
-            <p class="center">
-                Copyright © 2011 <a href="#">CestPasDur.com</a>
-                <span class="sep">|</span>
-                Powered by <a href="http://www.playframework.org" target="_blank">PlayFramework!</a>
-                <span class="sep">|</span> Design by <a href="http://jayj.dk" title="Design by Jayj.dk">Jayj.dk</a>
+    </p>
 
-            </p>
-        </footer>
-
-    </div>
 
 </div>
-
-
-<#{marqueurStat/}>
-
-    <script type="text/javascript">
-        //<![CDATA[
-        (function() {
-            var links = document.getElementsByTagName('a');
-            var query = '?';
-            for (var i = 0; i < links.length; i++) {
-                if (links[i].href.indexOf('#disqus_thread') >= 0) {
-                    query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-                }
-            }
-            document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/damiengouyettesblog/get_num_replies.js' + query + '"></' + 'script>');
-        })();
-        //]]>
-    </script>
 
 </body>
 </html>

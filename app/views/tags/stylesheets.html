@@ -1,8 +1,14 @@
-#{stylesheet id:'main', media:'screen', src:'main.css' /}
 #{shjs.style name:'ide-eclipse' /}
-<link rel="stylesheet" type="text/css" href="/public/markitup/sets/textile/style.css"/>
-<link rel="stylesheet" href="@{'/public/stylesheets/blueprint/screen.css'}" type="text/css" media="screen, projection">
+<!--link rel="stylesheet" type="text/css" href="/public/markitup/sets/textile/style.css"/>
+<link rel="stylesheet" href="@{'/public/stylesheets/blueprint/screen.css'}" type="text/css" media="screen, projection"-->
+
+<link rel="stylesheet" href="@{'/public/bootstrap/bootstrap-1.2.0.min.css'}" type="text/css"
+      media="screen, projection"/>
+
+<link rel="stylesheet" href="@{'/public/stylesheets/main.css'}" type="text/css"
+      media="screen, projection"/>
 
 
-#{get 'moreStyles' /}
+
+    #{get 'moreStyles' /}
 

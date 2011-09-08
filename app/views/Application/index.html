@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'CestPasDur.com' /}
 
 
 #{if flash.error}
@@ -18,18 +18,19 @@
 #{/list}
 
 
-
-
-<div class="right">
-    Page : #{list items:0..count.page(pageSize)-1, as:'i'}
-    #{if i==page}
-    [${i+1}]&#160;
-    #{/if}
-    #{else}
-    #{a @index(i)}[${i+1}]#{/a}&#160;
-    #{/else}
-    #{/list}
-
+<div class="row">
+    <div class="pagination">
+        <ul>
+            #{list items:0..count.page(pageSize)-1, as:'i'}
+            #{if i==page}
+            <li class="active"><a href="#">${i+1}</a></li>
+            #{/if}
+            #{else}
+            <li>#{a @index(i)}${i+1}#{/a}</li>
+            #{/else}
+            #{/list}
+        </ul>
+    </div>
 </div>
 
 <p>&#160;</p>

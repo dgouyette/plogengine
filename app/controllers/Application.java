@@ -123,6 +123,7 @@ public class Application extends Controller {
         if (image == null) {
             notFound();
         }
+        response.cacheFor("24h");
         renderBinary(new ByteArrayInputStream(image.data));
     }
 

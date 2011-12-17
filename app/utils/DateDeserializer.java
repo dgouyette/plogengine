@@ -10,10 +10,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import play.Logger;
 
 public class DateDeserializer implements JsonSerializer<Date> {
-  public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
-    DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT, Locale.FRANCE);
-    return new JsonPrimitive(dateFormat.format(src));
-  }
+    public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return new JsonPrimitive(simpleDateFormat.format(src));
+    }
 }

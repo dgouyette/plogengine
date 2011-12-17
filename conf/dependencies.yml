@@ -1,20 +1,13 @@
 require:
     - play
     - play -> search head
-    - play -> cargo
-    - customModules -> cargo
-    - play -> playapps
+#    - play -> playapps 1.4
     - rome -> rome 0.9
     - org.fusesource.wikitext -> wikitext-core 1.3
     - org.fusesource.wikitext -> confluence-core 1.3
     - org.fusesource.wikitext -> textile-core 1.3
 
 repositories:
-    #- playCustomModules:
-    #        type: local
-    #        artifact:   "/Users/damiengouyette/developpement/sources/play/cargo"
-    #        contains:
-    #           - customModules -> *
     - zenexity:
             type: iBiblio
             artifact:   "http://nexus.cestpasdur.com/nexus/content/groups/all/"

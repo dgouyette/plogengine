@@ -19,5 +19,6 @@ GET		/feed/															Feeds.index
 GET     /public/                                						staticDir:public
 GET     /images/{name}     												Application.fileContent
 GET     /backup/{id}        											Backup.backup
+GET     /backupall/       											Backup.backupall
 POST    /backup/restore/{format}		     									Backup.restore
 *       /{controller}/{action}                  						{controller}.{action}

@@ -18,7 +18,7 @@ public class Feeds extends Controller {
 
 	public static void index() throws FeedException {
 
-		SyndFeedImpl feed = Cache.get(FEEDS, SyndFeedImpl.class);
+		SyndFeedImpl feed=null;//Cache.get(FEEDS, SyndFeedImpl.class);
 
 		if (feed == null) {
 			feed = new SyndFeedImpl();
@@ -50,7 +50,7 @@ public class Feeds extends Controller {
 			feed.setEntries(entries);
 			Cache.set(FEEDS, feed, "24h");			
 		} else {
-			Logger.info("Utilisation de la version cachee des feeds", "");
+			//Logger.info("Utilisation de la version cachee des feeds", "");
 		}
 
 		SyndFeedOutput output = new SyndFeedOutput();
